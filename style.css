@@ -17,7 +17,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ARKA PLAN */
+/* BACKGROUND */
 
 .noise {
     position: fixed;
@@ -39,7 +39,7 @@ body {
     gap: 40px;
     position: sticky;
     top: 0;
-    background: rgba(7, 7, 7, 0.85);
+    background: rgba(7, 7, 7, 0.88);
     backdrop-filter: blur(14px);
     z-index: 10;
 }
@@ -49,7 +49,7 @@ body {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: white;
+    color: #fff;
     font-weight: 900;
     font-size: 22px;
     letter-spacing: -1px;
@@ -78,7 +78,7 @@ body {
 }
 
 .nav nav a:hover {
-    color: white;
+    color: #fff;
 }
 
 .nav-btn {
@@ -182,7 +182,7 @@ body {
 }
 
 .primary:hover {
-    background: white;
+    background: #fff;
     transform: translateY(-2px);
 }
 
@@ -193,10 +193,10 @@ body {
 
 .secondary:hover {
     border-color: #777;
-    color: white;
+    color: #fff;
 }
 
-/* HERO LOGO */
+/* CLTR LOGO */
 
 .hero-mark {
     height: 420px;
@@ -309,7 +309,7 @@ body {
     line-height: 1.7;
 }
 
-/* BOT */
+/* BOT ÖZELLİKLERİ */
 
 .features {
     margin: 35px 0;
@@ -359,68 +359,81 @@ body {
     color: #080808;
 }
 
-/* EKİP */
+/* EKİP ÜYELERİ */
 
 .members {
     margin-top: 32px;
+    width: 100%;
 }
 
 .member {
     display: grid;
-    grid-template-columns: 52px 1fr 24px;
+    grid-template-columns: 56px minmax(0, 1fr) 24px;
     align-items: center;
     gap: 15px;
-    padding: 13px 0;
+    padding: 14px 0;
     border-top: 1px solid #1b1b1b;
+    min-width: 0;
 }
 
 .member:last-child {
     border-bottom: 1px solid #1b1b1b;
 }
 
-/* AVATAR */
+/* AVATAR KUTUSU */
 
 .avatar {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-    min-height: 52px;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
 
-    border: 1px solid #303030;
+    border: 1px solid #3a3a3a;
     border-radius: 50%;
 
     overflow: hidden;
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: linear-gradient(
-        145deg,
-        #242424,
-        #0c0c0c
-    );
+    background: #101010;
 
-    color: #bbb;
-    font-size: 10px;
-    font-weight: 800;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.03),
+        0 5px 20px rgba(0,0,0,0.35);
 }
+
+/* AVATAR RESMİ */
 
 .avatar img {
     width: 100%;
     height: 100%;
 
+    min-width: 100%;
+    min-height: 100%;
+
     display: block;
 
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
 
     border-radius: 50%;
+}
+
+/* ÜYE YAZILARI */
+
+.member > div:nth-child(2) {
+    min-width: 0;
 }
 
 .member strong,
 .member span {
     display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .member strong {
@@ -438,6 +451,7 @@ body {
 .member > b {
     font-size: 9px;
     color: #444;
+    text-align: right;
 }
 
 /* DISCORD */
@@ -482,8 +496,10 @@ body {
 footer {
     border-top: 1px solid #1a1a1a;
     padding: 24px 6vw;
+
     display: flex;
     justify-content: space-between;
+
     color: #3f3f3f;
     font-size: 8px;
     letter-spacing: 2px;
@@ -548,6 +564,8 @@ footer {
     }
 }
 
+/* KÜÇÜK EKRAN */
+
 @media (max-width: 500px) {
 
     .nav-btn {
@@ -570,9 +588,15 @@ footer {
         padding: 45px 7vw;
     }
 
-    .avatar {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        min-height: 48px;
+    .member {
+        grid-template-columns: 50px minmax(0, 1fr) 20px;
+        gap: 12px;
     }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+    }
+}
