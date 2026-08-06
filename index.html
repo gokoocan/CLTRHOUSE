@@ -4,14 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CLTR — Team & Bot</title>
+    <title>CLTR — Team & Music</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================= SPOTIFY PLAYER ================= */
+
+        .hero-mark.spotify-area {
+            height: auto;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .spotify-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 15px;
+
+            color: #666;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .spotify-title i {
+            width: 6px;
+            height: 6px;
+            display: inline-block;
+
+            border-radius: 50%;
+            background: #ddd;
+            box-shadow: 0 0 14px #fff;
+        }
+
+        .spotify-box {
+            width: 100%;
+            overflow: hidden;
+
+            border: 1px solid #292929;
+            background: #101010;
+
+            box-shadow:
+                0 30px 70px rgba(0,0,0,.55);
+        }
+
+        .spotify-box iframe {
+            display: block;
+            width: 100%;
+            height: 152px;
+            border: 0;
+        }
+
+        .spotify-list {
+            margin-top: 14px;
+        }
+
+        .spotify-list-label {
+            margin-bottom: 9px;
+
+            color: #444;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .spotify-song {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 11px 13px;
+
+            color: #666;
+            text-decoration: none;
+
+            border-top: 1px solid #1b1b1b;
+
+            transition: .2s;
+        }
+
+        .spotify-song:hover {
+            color: #eee;
+            background: #111;
+        }
+
+        .spotify-song-number {
+            color: #444;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .spotify-song-info {
+            min-width: 0;
+        }
+
+        .spotify-song-name {
+            overflow: hidden;
+
+            color: inherit;
+            font-size: 9px;
+            font-weight: 800;
+
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .spotify-song-artist {
+            margin-top: 4px;
+
+            color: #444;
+            font-size: 7px;
+            letter-spacing: 1px;
+        }
+
+        .spotify-song-arrow {
+            margin-left: auto;
+            color: #444;
+            font-size: 11px;
+        }
+
+        .spotify-bottom {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 13px;
+
+            color: #444;
+            font-size: 7px;
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 850px) {
+
+            .hero-mark.spotify-area {
+                min-height: auto;
+                margin-top: 20px;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="noise"></div>
+
 
 <!-- ================= NAVBAR ================= -->
 
@@ -23,6 +166,7 @@
     </a>
 
     <nav>
+        <a href="#music">MUSIC</a>
         <a href="#bot">BOT</a>
         <a href="#team">EKİP</a>
         <a href="#discord">DISCORD</a>
@@ -72,10 +216,10 @@
             </a>
 
             <a
-                href="#bot"
+                href="#music"
                 class="secondary"
             >
-                BOTU KEŞFET
+                MÜZİĞİ KEŞFET
             </a>
 
         </div>
@@ -83,28 +227,156 @@
     </div>
 
 
-    <!-- ================= SPOTIFY ================= -->
+    <!-- ================= CLTR MUSIC ================= -->
 
-     <div class="spotify-player">
+    <div
+        class="hero-mark spotify-area"
+        id="music"
+    >
 
-        <iframe
-            src="https://open.spotify.com/embed/playlist/2YFYDLPClHg3N9QyOv2ROI?utm_source=generator&theme=0"
-            width="100%"
-            height="352"
-            frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-        </iframe>
+        <div class="spotify-title">
+            <i></i>
+            CLTR MUSIC
+        </div>
+
+
+        <!-- AKTİF SPOTIFY ŞARKISI -->
+
+        <div class="spotify-box">
+
+            <iframe
+                id="spotifyPlayer"
+                src="https://open.spotify.com/embed/track/3C1GHjftT1n2Kt0qfcFhNQ?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+
+        <!-- ================= 3 ŞARKI ================= -->
+
+        <div class="spotify-list">
+
+            <div class="spotify-list-label">
+                CLTR PLAYLIST / 03 TRACKS
+            </div>
+
+
+            <!-- 01 -->
+
+            <a
+                class="spotify-song"
+                href="https://open.spotify.com/intl-tr/track/3C1GHjftT1n2Kt0qfcFhNQ"
+                target="_blank"
+                onclick="changeSong('3C1GHjftT1n2Kt0qfcFhNQ'); return false;"
+            >
+
+                <span class="spotify-song-number">
+                    01
+                </span>
+
+                <div class="spotify-song-info">
+
+                    <div class="spotify-song-name">
+                        ZİRVE
+                    </div>
+
+                    <div class="spotify-song-artist">
+                        KESKİN
+                    </div>
+
+                </div>
+
+                <span class="spotify-song-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+            <!-- 02 -->
+
+            <a
+                class="spotify-song"
+                href="https://open.spotify.com/intl-tr/track/0blon1TjNYBVNauxaRBAo8"
+                target="_blank"
+                onclick="changeSong('0blon1TjNYBVNauxaRBAo8'); return false;"
+            >
+
+                <span class="spotify-song-number">
+                    02
+                </span>
+
+                <div class="spotify-song-info">
+
+                    <div class="spotify-song-name">
+                        İNANILMAZ (INTRO)
+                    </div>
+
+                    <div class="spotify-song-artist">
+                        KESKİN
+                    </div>
+
+                </div>
+
+                <span class="spotify-song-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+            <!-- 03 -->
+
+            <a
+                class="spotify-song"
+                href="https://open.spotify.com/intl-tr/track/2T59gEqFlieuRWXDGezs6u"
+                target="_blank"
+                onclick="changeSong('2T59gEqFlieuRWXDGezs6u'); return false;"
+            >
+
+                <span class="spotify-song-number">
+                    03
+                </span>
+
+                <div class="spotify-song-info">
+
+                    <div class="spotify-song-name">
+                        THE END (OUTRO)
+                    </div>
+
+                    <div class="spotify-song-artist">
+                        KESKİN
+                    </div>
+
+                </div>
+
+                <span class="spotify-song-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="spotify-bottom">
+
+            <span>
+                CLTR / MUSIC
+            </span>
+
+            <span>
+                EST. 2026
+            </span>
+
+        </div>
 
     </div>
-
-    <div class="spotify-bottom">
-        <span>CLTR / MUSIC</span>
-        <span>EST. 2026</span>
-    </div>
-
 
 </section>
+
 
 
 <!-- ================= BOT + EKİP ================= -->
@@ -228,6 +500,7 @@
 </div>
 
 
+
 <!-- ================= EKİP ================= -->
 
 <div
@@ -258,7 +531,7 @@
     <div class="members">
 
 
-        <!-- ================= EFE ================= -->
+        <!-- GOKO -->
 
         <article class="member">
 
@@ -284,7 +557,7 @@
         </article>
 
 
-        <!-- ================= GOKO ================= -->
+        <!-- PALES -->
 
         <article class="member">
 
@@ -310,7 +583,7 @@
         </article>
 
 
-        <!-- ================= DEVELOPER ================= -->
+        <!-- CYA -->
 
         <article class="member">
 
@@ -336,7 +609,7 @@
         </article>
 
 
-        <!-- ================= MEMBER ================= -->
+        <!-- TATAR -->
 
         <article class="member">
 
@@ -351,7 +624,7 @@
 
             <div class="member-info">
 
-                <strong>TATARX2r</strong>
+                <strong>TATARX2</strong>
 
                 <span>TEAM OF CLTR</span>
 
@@ -367,6 +640,7 @@
 </div>
 
 </section>
+
 
 
 <!-- ================= DISCORD ================= -->
@@ -409,6 +683,7 @@
 </main>
 
 
+
 <!-- ================= FOOTER ================= -->
 
 <footer>
@@ -424,7 +699,22 @@
 </footer>
 
 
-<script src="script.js"></script>
+
+<script>
+
+function changeSong(trackId) {
+
+    const player =
+        document.getElementById("spotifyPlayer");
+
+    player.src =
+        "https://open.spotify.com/embed/track/"
+        + trackId
+        + "?utm_source=generator&theme=0";
+
+}
+
+</script>
 
 </body>
 </html>
