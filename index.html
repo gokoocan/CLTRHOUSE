@@ -1,162 +1,870 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CLTR — Team & Music</title>
+<title>CLTR — Team & Bot</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
 
-    <style>
-        /* ================= SPOTIFY PLAYER ================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-        .hero-mark.spotify-area {
-            height: auto;
-            min-height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: stretch;
-            position: relative;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .spotify-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 15px;
+html {
+    scroll-behavior: smooth;
+}
 
-            color: #666;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 3px;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #070707;
+    color: #eeeeee;
+    font-family: Inter, Arial, sans-serif;
+    overflow-x: hidden;
+}
 
-        .spotify-title i {
-            width: 6px;
-            height: 6px;
-            display: inline-block;
+.noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .035;
+    z-index: 100;
 
-            border-radius: 50%;
-            background: #ddd;
-            box-shadow: 0 0 14px #fff;
-        }
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-        .spotify-box {
-            width: 100%;
-            overflow: hidden;
 
-            border: 1px solid #292929;
-            background: #101010;
+/* ================================================= */
+/* NAVBAR */
+/* ================================================= */
 
-            box-shadow:
-                0 30px 70px rgba(0,0,0,.55);
-        }
+.nav {
+    height: 82px;
+    padding: 0 6vw;
 
-        .spotify-box iframe {
-            display: block;
-            width: 100%;
-            height: 152px;
-            border: 0;
-        }
+    display: flex;
+    align-items: center;
+    gap: 40px;
 
-        .spotify-list {
-            margin-top: 14px;
-        }
+    position: sticky;
+    top: 0;
+    z-index: 50;
 
-        .spotify-list-label {
-            margin-bottom: 9px;
+    background: rgba(7,7,7,.90);
+    backdrop-filter: blur(14px);
 
-            color: #444;
-            font-size: 8px;
-            font-weight: 800;
-            letter-spacing: 3px;
-        }
+    border-bottom: 1px solid #1c1c1c;
+}
 
-        .spotify-song {
-            display: flex;
-            align-items: center;
-            gap: 13px;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-            padding: 11px 13px;
+    color: #fff;
+    text-decoration: none;
 
-            color: #666;
-            text-decoration: none;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
 
-            border-top: 1px solid #1b1b1b;
+.brand small {
+    margin-top: 13px;
 
-            transition: .2s;
-        }
+    color: #777;
+    font-size: 8px;
+    letter-spacing: 3px;
+}
 
-        .spotify-song:hover {
-            color: #eee;
-            background: #111;
-        }
+.nav nav {
+    display: flex;
+    gap: 28px;
+    margin-left: auto;
+}
 
-        .spotify-song-number {
-            color: #444;
-            font-size: 8px;
-            font-weight: 800;
-        }
+.nav nav a,
+.nav-btn {
+    color: #888;
+    text-decoration: none;
 
-        .spotify-song-info {
-            min-width: 0;
-        }
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
 
-        .spotify-song-name {
-            overflow: hidden;
+    transition: .2s;
+}
 
-            color: inherit;
-            font-size: 9px;
-            font-weight: 800;
+.nav nav a:hover {
+    color: #fff;
+}
 
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+.nav-btn {
+    padding: 12px 17px;
+    border: 1px solid #3a3a3a;
+    color: #ddd;
+}
 
-        .spotify-song-artist {
-            margin-top: 4px;
+.nav-btn:hover {
+    color: #080808;
+    background: #eee;
+}
 
-            color: #444;
-            font-size: 7px;
-            letter-spacing: 1px;
-        }
 
-        .spotify-song-arrow {
-            margin-left: auto;
-            color: #444;
-            font-size: 11px;
-        }
+/* ================================================= */
+/* HERO */
+/* ================================================= */
 
-        .spotify-bottom {
-            display: flex;
-            justify-content: space-between;
+.hero {
+    min-height: 610px;
+    padding: 70px 8vw;
 
-            margin-top: 13px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-            color: #444;
-            font-size: 7px;
-            letter-spacing: 3px;
-        }
+    align-items: center;
 
-        @media (max-width: 850px) {
+    border-bottom: 1px solid #1a1a1a;
 
-            .hero-mark.spotify-area {
-                min-height: auto;
-                margin-top: 20px;
-            }
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #242424 0,
+            #0d0d0d 28%,
+            #070707 58%
+        );
+}
 
-        }
-    </style>
+.hero-copy {
+    max-width: 620px;
+}
+
+.eyebrow,
+.tag {
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.eyebrow i {
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 9px;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    box-shadow: 0 0 14px #fff;
+}
+
+.hero h1 {
+    margin: 30px 0 34px;
+
+    font-size: clamp(90px, 14vw, 190px);
+    line-height: .75;
+
+    letter-spacing: -.09em;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fff,
+            #6d6d6d 48%,
+            #fff 78%,
+            #444
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 490px;
+
+    color: #8e8e8e;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.primary,
+.secondary,
+.wide-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding: 15px 18px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+
+    transition: .2s;
+}
+
+.primary {
+    color: #080808;
+    background: #eee;
+}
+
+.primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.secondary {
+    color: #bbb;
+    border: 1px solid #303030;
+}
+
+.secondary:hover {
+    color: #fff;
+    border-color: #777;
+}
+
+
+/* ================================================= */
+/* MUSIC */
+/* ================================================= */
+
+.hero-mark {
+    width: 100%;
+    max-width: 520px;
+
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.music-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.music-heading i {
+    width: 6px;
+    height: 6px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    box-shadow: 0 0 14px #fff;
+}
+
+.music-player {
+    width: 100%;
+
+    padding: 10px;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
+}
+
+.music-player iframe {
+    display: block;
+
+    width: 100%;
+    height: 152px;
+
+    border: 0;
+}
+
+
+/* TRACK LIST */
+
+.track-list {
+    margin-top: 15px;
+
+    border: 1px solid #242424;
+
+    background: rgba(10,10,10,.8);
+}
+
+.track-title {
+    padding: 13px;
+
+    color: #444;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.track {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    color: #666;
+
+    background: transparent;
+
+    border: 0;
+    border-bottom: 1px solid #1b1b1b;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: .2s;
+}
+
+.track:last-child {
+    border-bottom: 0;
+}
+
+.track:hover {
+    color: #fff;
+    background: #111;
+}
+
+.track.active {
+    color: #eee;
+    background: #111;
+}
+
+.track-number {
+    width: 20px;
+
+    color: #444;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.track.active .track-number {
+    color: #aaa;
+}
+
+.track-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.track-name {
+    overflow: hidden;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.track-sub {
+    margin-top: 4px;
+
+    color: #444;
+
+    font-size: 7px;
+    letter-spacing: 2px;
+}
+
+.track-arrow {
+    color: #444;
+
+    font-size: 12px;
+}
+
+.track.active .track-arrow {
+    color: #aaa;
+}
+
+.music-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 13px;
+
+    color: #444;
+
+    font-size: 7px;
+    letter-spacing: 3px;
+}
+
+
+/* ================================================= */
+/* PANELS */
+/* ================================================= */
+
+.split {
+    display: grid;
+
+    grid-template-columns: 1.08fr .92fr;
+
+    margin: 0 6vw;
+}
+
+.panel {
+    padding: 55px 5vw;
+
+    border-left: 1px solid #1b1b1b;
+}
+
+.team-panel {
+    border-right: 1px solid #1b1b1b;
+}
+
+.panel-head {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 32px;
+}
+
+.status {
+    color: #666;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.status b {
+    display: inline-block;
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #bbb;
+}
+
+.count {
+    color: #444;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.panel h2 {
+    margin: 12px 0;
+
+    font-size: 34px;
+
+    letter-spacing: -1px;
+}
+
+.panel h2 em {
+    color: #777;
+    font-style: normal;
+}
+
+.muted {
+    color: #6f6f6f;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* ================================================= */
+/* BOT */
+/* ================================================= */
+
+.features {
+    margin: 35px 0;
+}
+
+.features article {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-top: 1px solid #1b1b1b;
+}
+
+.features article:last-child {
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.features article > b {
+    color: #444;
+    font-size: 9px;
+}
+
+.features strong,
+.features span {
+    display: block;
+}
+
+.features strong {
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.features span {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 10px;
+}
+
+.wide-btn {
+    width: 100%;
+
+    color: #ddd;
+
+    background: #111;
+
+    border: 1px solid #2a2a2a;
+}
+
+.wide-btn:hover {
+    color: #080808;
+    background: #eee;
+}
+
+
+/* ================================================= */
+/* MEMBERS */
+/* ================================================= */
+
+.members {
+    width: 100%;
+    margin-top: 32px;
+}
+
+.member {
+    display: grid;
+
+    grid-template-columns: 56px minmax(0,1fr) 24px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+
+    padding: 14px 0;
+
+    border-top: 1px solid #1b1b1b;
+}
+
+.member:last-child {
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+
+    min-width: 56px;
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid #3a3a3a;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 5px 20px rgba(0,0,0,.35);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+.member > div:nth-child(2) {
+    min-width: 0;
+}
+
+.member strong,
+.member span {
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.member strong {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.member span {
+    margin-top: 5px;
+
+    color: #555;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.member > b {
+    color: #444;
+
+    font-size: 9px;
+
+    text-align: right;
+}
+
+
+/* ================================================= */
+/* DISCORD */
+/* ================================================= */
+
+.discord {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    margin: 80px 6vw;
+
+    padding: 55px 6vw;
+
+    border: 1px solid #252525;
+
+    background:
+        linear-gradient(
+            120deg,
+            #111,
+            #080808
+        );
+}
+
+.discord h2 {
+    margin: 18px 0 8px;
+
+    font-size: clamp(34px,5vw,65px);
+
+    letter-spacing: -3px;
+}
+
+.discord h2 span {
+    color: #555;
+}
+
+.discord p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+.big {
+    min-width: 190px;
+}
+
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 24px 6vw;
+
+    color: #3f3f3f;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    border-top: 1px solid #1a1a1a;
+}
+
+
+/* ================================================= */
+/* TABLET */
+/* ================================================= */
+
+@media (max-width:850px) {
+
+    .nav {
+        padding: 0 5vw;
+    }
+
+    .nav nav {
+        display: none;
+    }
+
+    .nav-btn {
+        margin-left: auto;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding: 70px 7vw;
+    }
+
+    .hero-mark {
+        max-width: 100%;
+
+        margin: 60px 0 0;
+    }
+
+    .split {
+        grid-template-columns: 1fr;
+
+        margin: 0;
+    }
+
+    .panel {
+        border-right: 1px solid #1b1b1b;
+    }
+
+    .discord {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin: 50px 5vw;
+    }
+
+    .discord .big {
+        width: 100%;
+    }
+}
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+@media (max-width:500px) {
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 90px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions a {
+        width: 100%;
+    }
+
+    .panel {
+        padding: 45px 7vw;
+    }
+
+    .member {
+        grid-template-columns: 50px minmax(0,1fr) 20px;
+
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .music-player {
+        padding: 7px;
+    }
+
+    .music-player iframe {
+        height: 152px;
+    }
+
+    footer {
+        padding: 20px 5vw;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
 <div class="noise"></div>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
 
 <header class="nav">
 
@@ -166,7 +874,6 @@
     </a>
 
     <nav>
-        <a href="#music">MUSIC</a>
         <a href="#bot">BOT</a>
         <a href="#team">EKİP</a>
         <a href="#discord">DISCORD</a>
@@ -183,7 +890,9 @@
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- ================================================= -->
+<!-- HERO -->
+<!-- ================================================= -->
 
 <main>
 
@@ -216,10 +925,10 @@
             </a>
 
             <a
-                href="#music"
+                href="#bot"
                 class="secondary"
             >
-                MÜZİĞİ KEŞFET
+                BOTU KEŞFET
             </a>
 
         </div>
@@ -227,22 +936,19 @@
     </div>
 
 
-    <!-- ================= CLTR MUSIC ================= -->
+    <!-- ================================================= -->
+    <!-- CLTR MUSIC -->
+    <!-- ================================================= -->
 
-    <div
-        class="hero-mark spotify-area"
-        id="music"
-    >
+    <div class="hero-mark">
 
-        <div class="spotify-title">
+        <div class="music-heading">
             <i></i>
             CLTR MUSIC
         </div>
 
 
-        <!-- AKTİF SPOTIFY ŞARKISI -->
-
-        <div class="spotify-box">
+        <div class="music-player">
 
             <iframe
                 id="spotifyPlayer"
@@ -254,114 +960,100 @@
         </div>
 
 
-        <!-- ================= 3 ŞARKI ================= -->
+        <div class="track-list">
 
-        <div class="spotify-list">
-
-            <div class="spotify-list-label">
-                CLTR PLAYLIST / 03 TRACKS
+            <div class="track-title">
+                CLTR MUSIC / 03 TRACKS
             </div>
 
 
-            <!-- 01 -->
-
-            <a
-                class="spotify-song"
-                href="https://open.spotify.com/intl-tr/track/3C1GHjftT1n2Kt0qfcFhNQ"
-                target="_blank"
-                onclick="changeSong('3C1GHjftT1n2Kt0qfcFhNQ'); return false;"
+            <button
+                class="track active"
+                onclick="changeSong('3C1GHjftT1n2Kt0qfcFhNQ', this)"
             >
 
-                <span class="spotify-song-number">
+                <span class="track-number">
                     01
                 </span>
 
-                <div class="spotify-song-info">
+                <div class="track-info">
 
-                    <div class="spotify-song-name">
-                        ZİRVE
+                    <div class="track-name">
+                        CLTR TRACK 01
                     </div>
 
-                    <div class="spotify-song-artist">
-                        KESKİN
+                    <div class="track-sub">
+                        SPOTIFY
                     </div>
 
                 </div>
 
-                <span class="spotify-song-arrow">
-                    ↗
+                <span class="track-arrow">
+                    ▶
                 </span>
 
-            </a>
+            </button>
 
 
-            <!-- 02 -->
-
-            <a
-                class="spotify-song"
-                href="https://open.spotify.com/intl-tr/track/0blon1TjNYBVNauxaRBAo8"
-                target="_blank"
-                onclick="changeSong('0blon1TjNYBVNauxaRBAo8'); return false;"
+            <button
+                class="track"
+                onclick="changeSong('0blon1TjNYBVNauxaRBAo8', this)"
             >
 
-                <span class="spotify-song-number">
+                <span class="track-number">
                     02
                 </span>
 
-                <div class="spotify-song-info">
+                <div class="track-info">
 
-                    <div class="spotify-song-name">
-                        İNANILMAZ (INTRO)
+                    <div class="track-name">
+                        CLTR TRACK 02
                     </div>
 
-                    <div class="spotify-song-artist">
-                        KESKİN
+                    <div class="track-sub">
+                        SPOTIFY
                     </div>
 
                 </div>
 
-                <span class="spotify-song-arrow">
-                    ↗
+                <span class="track-arrow">
+                    ▶
                 </span>
 
-            </a>
+            </button>
 
 
-            <!-- 03 -->
-
-            <a
-                class="spotify-song"
-                href="https://open.spotify.com/intl-tr/track/2T59gEqFlieuRWXDGezs6u"
-                target="_blank"
-                onclick="changeSong('2T59gEqFlieuRWXDGezs6u'); return false;"
+            <button
+                class="track"
+                onclick="changeSong('2T59gEqFlieuRWXDGezs6u', this)"
             >
 
-                <span class="spotify-song-number">
+                <span class="track-number">
                     03
                 </span>
 
-                <div class="spotify-song-info">
+                <div class="track-info">
 
-                    <div class="spotify-song-name">
-                        THE END (OUTRO)
+                    <div class="track-name">
+                        CLTR TRACK 03
                     </div>
 
-                    <div class="spotify-song-artist">
-                        KESKİN
+                    <div class="track-sub">
+                        SPOTIFY
                     </div>
 
                 </div>
 
-                <span class="spotify-song-arrow">
-                    ↗
+                <span class="track-arrow">
+                    ▶
                 </span>
 
-            </a>
+            </button>
 
         </div>
 
 
-        <div class="spotify-bottom">
+        <div class="music-footer">
 
             <span>
                 CLTR / MUSIC
@@ -379,12 +1071,14 @@
 
 
 
-<!-- ================= BOT + EKİP ================= -->
+<!-- ================================================= -->
+<!-- BOT + EKİP -->
+<!-- ================================================= -->
 
 <section class="split">
 
 
-<!-- ================= BOT ================= -->
+<!-- BOT -->
 
 <div
     class="panel bot-panel"
@@ -501,7 +1195,7 @@
 
 
 
-<!-- ================= EKİP ================= -->
+<!-- EKİP -->
 
 <div
     class="panel team-panel"
@@ -531,8 +1225,6 @@
     <div class="members">
 
 
-        <!-- GOKO -->
-
         <article class="member">
 
             <div class="avatar">
@@ -544,11 +1236,13 @@
 
             </div>
 
-            <div class="member-info">
+            <div>
 
                 <strong>GOKO</strong>
 
-                <span>OWNER OF CLTR</span>
+                <span>
+                    OWNER OF CLTR
+                </span>
 
             </div>
 
@@ -557,7 +1251,6 @@
         </article>
 
 
-        <!-- PALES -->
 
         <article class="member">
 
@@ -570,11 +1263,13 @@
 
             </div>
 
-            <div class="member-info">
+            <div>
 
                 <strong>PALES</strong>
 
-                <span>SECOND OWNER OF CLTR</span>
+                <span>
+                    SECOND OWNER OF CLTR
+                </span>
 
             </div>
 
@@ -583,7 +1278,6 @@
         </article>
 
 
-        <!-- CYA -->
 
         <article class="member">
 
@@ -596,11 +1290,13 @@
 
             </div>
 
-            <div class="member-info">
+            <div>
 
                 <strong>CYA</strong>
 
-                <span>TEAM OF CLTR</span>
+                <span>
+                    TEAM OF CLTR
+                </span>
 
             </div>
 
@@ -609,7 +1305,6 @@
         </article>
 
 
-        <!-- TATAR -->
 
         <article class="member">
 
@@ -622,11 +1317,13 @@
 
             </div>
 
-            <div class="member-info">
+            <div>
 
                 <strong>TATARX2</strong>
 
-                <span>TEAM OF CLTR</span>
+                <span>
+                    TEAM OF CLTR
+                </span>
 
             </div>
 
@@ -643,7 +1340,9 @@
 
 
 
-<!-- ================= DISCORD ================= -->
+<!-- ================================================= -->
+<!-- DISCORD -->
+<!-- ================================================= -->
 
 <section
     class="discord"
@@ -684,7 +1383,9 @@
 
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
 
 <footer>
 
@@ -700,17 +1401,32 @@
 
 
 
+<!-- ================================================= -->
+<!-- SPOTIFY JS -->
+<!-- ================================================= -->
+
 <script>
 
-function changeSong(trackId) {
+function changeSong(songId, button) {
 
-    const player =
-        document.getElementById("spotifyPlayer");
+    const player = document.getElementById("spotifyPlayer");
 
     player.src =
-        "https://open.spotify.com/embed/track/"
-        + trackId
-        + "?utm_source=generator&theme=0";
+        "https://open.spotify.com/embed/track/" +
+        songId +
+        "?utm_source=generator&theme=0";
+
+
+    document
+        .querySelectorAll(".track")
+        .forEach(function(track) {
+
+            track.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
 
 }
 
