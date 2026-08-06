@@ -1,1 +1,1436 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>CLTR — Team & Bot</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #070707;
+    color: #eeeeee;
+    font-family: Inter, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .035;
+    z-index: 100;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* ================================================= */
+/* NAVBAR */
+/* ================================================= */
+
+.nav {
+    height: 82px;
+    padding: 0 6vw;
+
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    background: rgba(7,7,7,.90);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid #1c1c1c;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.brand small {
+    margin-top: 13px;
+
+    color: #777;
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+.nav nav {
+    display: flex;
+    gap: 28px;
+    margin-left: auto;
+}
+
+.nav nav a,
+.nav-btn {
+    color: #888;
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    transition: .2s;
+}
+
+.nav nav a:hover {
+    color: #fff;
+}
+
+.nav-btn {
+    padding: 12px 17px;
+    border: 1px solid #3a3a3a;
+    color: #ddd;
+}
+
+.nav-btn:hover {
+    color: #080808;
+    background: #eee;
+}
+
+
+/* ================================================= */
+/* HERO */
+/* ================================================= */
+
+.hero {
+    min-height: 610px;
+    padding: 70px 8vw;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    border-bottom: 1px solid #1a1a1a;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #242424 0,
+            #0d0d0d 28%,
+            #070707 58%
+        );
+}
+
+.hero-copy {
+    max-width: 620px;
+}
+
+.eyebrow,
+.tag {
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.eyebrow i {
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 9px;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    box-shadow: 0 0 14px #fff;
+}
+
+.hero h1 {
+    margin: 30px 0 34px;
+
+    font-size: clamp(90px, 14vw, 190px);
+    line-height: .75;
+
+    letter-spacing: -.09em;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fff,
+            #6d6d6d 48%,
+            #fff 78%,
+            #444
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 490px;
+
+    color: #8e8e8e;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.primary,
+.secondary,
+.wide-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding: 15px 18px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+
+    transition: .2s;
+}
+
+.primary {
+    color: #080808;
+    background: #eee;
+}
+
+.primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.secondary {
+    color: #bbb;
+    border: 1px solid #303030;
+}
+
+.secondary:hover {
+    color: #fff;
+    border-color: #777;
+}
+
+
+/* ================================================= */
+/* MUSIC */
+/* ================================================= */
+
+.hero-mark {
+    width: 100%;
+    max-width: 520px;
+
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.music-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.music-heading i {
+    width: 6px;
+    height: 6px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    box-shadow: 0 0 14px #fff;
+}
+
+.music-player {
+    width: 100%;
+
+    padding: 10px;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
+}
+
+.music-player iframe {
+    display: block;
+
+    width: 100%;
+    height: 152px;
+
+    border: 0;
+}
+
+
+/* TRACK LIST */
+
+.track-list {
+    margin-top: 15px;
+
+    border: 1px solid #242424;
+
+    background: rgba(10,10,10,.8);
+}
+
+.track-title {
+    padding: 13px;
+
+    color: #444;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.track {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    color: #666;
+
+    background: transparent;
+
+    border: 0;
+    border-bottom: 1px solid #1b1b1b;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: .2s;
+}
+
+.track:last-child {
+    border-bottom: 0;
+}
+
+.track:hover {
+    color: #fff;
+    background: #111;
+}
+
+.track.active {
+    color: #eee;
+    background: #111;
+}
+
+.track-number {
+    width: 20px;
+
+    color: #444;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.track.active .track-number {
+    color: #aaa;
+}
+
+.track-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.track-name {
+    overflow: hidden;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.track-sub {
+    margin-top: 4px;
+
+    color: #444;
+
+    font-size: 7px;
+    letter-spacing: 2px;
+}
+
+.track-arrow {
+    color: #444;
+
+    font-size: 12px;
+}
+
+.track.active .track-arrow {
+    color: #aaa;
+}
+
+.music-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 13px;
+
+    color: #444;
+
+    font-size: 7px;
+    letter-spacing: 3px;
+}
+
+
+/* ================================================= */
+/* PANELS */
+/* ================================================= */
+
+.split {
+    display: grid;
+
+    grid-template-columns: 1.08fr .92fr;
+
+    margin: 0 6vw;
+}
+
+.panel {
+    padding: 55px 5vw;
+
+    border-left: 1px solid #1b1b1b;
+}
+
+.team-panel {
+    border-right: 1px solid #1b1b1b;
+}
+
+.panel-head {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 32px;
+}
+
+.status {
+    color: #666;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.status b {
+    display: inline-block;
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #bbb;
+}
+
+.count {
+    color: #444;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.panel h2 {
+    margin: 12px 0;
+
+    font-size: 34px;
+
+    letter-spacing: -1px;
+}
+
+.panel h2 em {
+    color: #777;
+    font-style: normal;
+}
+
+.muted {
+    color: #6f6f6f;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* ================================================= */
+/* BOT */
+/* ================================================= */
+
+.features {
+    margin: 35px 0;
+}
+
+.features article {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-top: 1px solid #1b1b1b;
+}
+
+.features article:last-child {
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.features article > b {
+    color: #444;
+    font-size: 9px;
+}
+
+.features strong,
+.features span {
+    display: block;
+}
+
+.features strong {
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.features span {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 10px;
+}
+
+.wide-btn {
+    width: 100%;
+
+    color: #ddd;
+
+    background: #111;
+
+    border: 1px solid #2a2a2a;
+}
+
+.wide-btn:hover {
+    color: #080808;
+    background: #eee;
+}
+
+
+/* ================================================= */
+/* MEMBERS */
+/* ================================================= */
+
+.members {
+    width: 100%;
+    margin-top: 32px;
+}
+
+.member {
+    display: grid;
+
+    grid-template-columns: 56px minmax(0,1fr) 24px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+
+    padding: 14px 0;
+
+    border-top: 1px solid #1b1b1b;
+}
+
+.member:last-child {
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+
+    min-width: 56px;
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid #3a3a3a;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 5px 20px rgba(0,0,0,.35);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+.member > div:nth-child(2) {
+    min-width: 0;
+}
+
+.member strong,
+.member span {
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.member strong {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.member span {
+    margin-top: 5px;
+
+    color: #555;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.member > b {
+    color: #444;
+
+    font-size: 9px;
+
+    text-align: right;
+}
+
+
+/* ================================================= */
+/* DISCORD */
+/* ================================================= */
+
+.discord {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    margin: 80px 6vw;
+
+    padding: 55px 6vw;
+
+    border: 1px solid #252525;
+
+    background:
+        linear-gradient(
+            120deg,
+            #111,
+            #080808
+        );
+}
+
+.discord h2 {
+    margin: 18px 0 8px;
+
+    font-size: clamp(34px,5vw,65px);
+
+    letter-spacing: -3px;
+}
+
+.discord h2 span {
+    color: #555;
+}
+
+.discord p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+.big {
+    min-width: 190px;
+}
+
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 24px 6vw;
+
+    color: #3f3f3f;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    border-top: 1px solid #1a1a1a;
+}
+
+
+/* ================================================= */
+/* TABLET */
+/* ================================================= */
+
+@media (max-width:850px) {
+
+    .nav {
+        padding: 0 5vw;
+    }
+
+    .nav nav {
+        display: none;
+    }
+
+    .nav-btn {
+        margin-left: auto;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding: 70px 7vw;
+    }
+
+    .hero-mark {
+        max-width: 100%;
+
+        margin: 60px 0 0;
+    }
+
+    .split {
+        grid-template-columns: 1fr;
+
+        margin: 0;
+    }
+
+    .panel {
+        border-right: 1px solid #1b1b1b;
+    }
+
+    .discord {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin: 50px 5vw;
+    }
+
+    .discord .big {
+        width: 100%;
+    }
+}
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+@media (max-width:500px) {
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 90px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions a {
+        width: 100%;
+    }
+
+    .panel {
+        padding: 45px 7vw;
+    }
+
+    .member {
+        grid-template-columns: 50px minmax(0,1fr) 20px;
+
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .music-player {
+        padding: 7px;
+    }
+
+    .music-player iframe {
+        height: 152px;
+    }
+
+    footer {
+        padding: 20px 5vw;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="noise"></div>
+
+
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
+
+<header class="nav">
+
+    <a href="#" class="brand">
+        <span>CLTR</span>
+        <small>TEAM</small>
+    </a>
+
+    <nav>
+        <a href="#bot">BOT</a>
+        <a href="#team">EKİP</a>
+        <a href="#discord">DISCORD</a>
+    </nav>
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="nav-btn"
+    >
+        SUNUCUYA KATIL
+    </a>
+
+</header>
+
+
+<!-- ================================================= -->
+<!-- HERO -->
+<!-- ================================================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-copy">
+
+        <div class="eyebrow">
+            <i></i>
+            CLTR COMMUNITY
+        </div>
+
+        <h1>CLTR</h1>
+
+        <p>
+            Ekibin gücü, topluluğun merkezi.
+            CLTR botu ve ekibimiz için oluşturulmuş
+            özel topluluk merkezi.
+        </p>
+
+        <div class="actions">
+
+            <a
+                href="https://discord.gg/cltrhouse"
+                target="_blank"
+                class="primary"
+            >
+                DISCORD'A KATIL
+                <span>↗</span>
+            </a>
+
+            <a
+                href="#bot"
+                class="secondary"
+            >
+                BOTU KEŞFET
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- CLTR MUSIC -->
+    <!-- ================================================= -->
+
+    <div class="hero-mark">
+
+        <div class="music-heading">
+            <i></i>
+            CLTR MUSIC
+        </div>
+
+
+        <div class="music-player">
+
+            <iframe
+                id="spotifyPlayer"
+                src="https://open.spotify.com/embed/track/3C1GHjftT1n2Kt0qfcFhNQ?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+
+        <div class="track-list">
+
+            <div class="track-title">
+                CLTR MUSIC / 03 TRACKS
+            </div>
+
+
+            <button
+                class="track active"
+                onclick="changeSong('3C1GHjftT1n2Kt0qfcFhNQ', this)"
+            >
+
+                <span class="track-number">
+                    01
+                </span>
+
+                <div class="track-info">
+
+                    <div class="track-name">
+                        CLTR TRACK 01
+                    </div>
+
+                    <div class="track-sub">
+                        SPOTIFY
+                    </div>
+
+                </div>
+
+                <span class="track-arrow">
+                    ▶
+                </span>
+
+            </button>
+
+
+            <button
+                class="track"
+                onclick="changeSong('0blon1TjNYBVNauxaRBAo8', this)"
+            >
+
+                <span class="track-number">
+                    02
+                </span>
+
+                <div class="track-info">
+
+                    <div class="track-name">
+                        CLTR TRACK 02
+                    </div>
+
+                    <div class="track-sub">
+                        SPOTIFY
+                    </div>
+
+                </div>
+
+                <span class="track-arrow">
+                    ▶
+                </span>
+
+            </button>
+
+
+            <button
+                class="track"
+                onclick="changeSong('2T59gEqFlieuRWXDGezs6u', this)"
+            >
+
+                <span class="track-number">
+                    03
+                </span>
+
+                <div class="track-info">
+
+                    <div class="track-name">
+                        CLTR TRACK 03
+                    </div>
+
+                    <div class="track-sub">
+                        SPOTIFY
+                    </div>
+
+                </div>
+
+                <span class="track-arrow">
+                    ▶
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <div class="music-footer">
+
+            <span>
+                CLTR / MUSIC
+            </span>
+
+            <span>
+                EST. 2026
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- BOT + EKİP -->
+<!-- ================================================= -->
+
+<section class="split">
+
+
+<!-- BOT -->
+
+<div
+    class="panel bot-panel"
+    id="bot"
+>
+
+    <div class="panel-head">
+
+        <span class="tag">
+            01 / BOT
+        </span>
+
+        <span class="status">
+            <b></b>
+            ONLINE
+        </span>
+
+    </div>
+
+
+    <h2>
+        CLTR
+        <em>BOT</em>
+    </h2>
+
+    <p class="muted">
+        Sunucunu düzenli, hızlı ve profesyonel tutmak
+        için tasarlanmış CLTR yardımcı botu.
+    </p>
+
+
+    <div class="features">
+
+        <article>
+
+            <b>01</b>
+
+            <div>
+
+                <strong>OTO ROL</strong>
+
+                <span>
+                    Sunucuya giren üyeye otomatik rol verir.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>02</b>
+
+            <div>
+
+                <strong>TICKET</strong>
+
+                <span>
+                    Özel kategorilerle hızlı destek sistemi.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>03</b>
+
+            <div>
+
+                <strong>BAŞVURU</strong>
+
+                <span>
+                    Ekibe özel başvuru sistemi.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>04</b>
+
+            <div>
+
+                <strong>DESTEK</strong>
+
+                <span>
+                    Yetkili ekibine kolayca ulaş.
+                </span>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="wide-btn"
+    >
+        DISCORD SUNUCUSUNA GİT
+        <span>↗</span>
+    </a>
+
+</div>
+
+
+
+<!-- EKİP -->
+
+<div
+    class="panel team-panel"
+    id="team"
+>
+
+    <div class="panel-head">
+
+        <span class="tag">
+            02 / TEAM
+        </span>
+
+        <span class="count">
+            CLTR MEMBERS
+        </span>
+
+    </div>
+
+
+    <h2>EKİBİMİZ</h2>
+
+    <p class="muted">
+        CLTR'nin arkasındaki ekip.
+    </p>
+
+
+    <div class="members">
+
+
+        <article class="member">
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/iiesz8m.jpg"
+                    alt="GOKO"
+                >
+
+            </div>
+
+            <div>
+
+                <strong>GOKO</strong>
+
+                <span>
+                    OWNER OF CLTR
+                </span>
+
+            </div>
+
+            <b>01</b>
+
+        </article>
+
+
+
+        <article class="member">
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/eg77n0t.png"
+                    alt="PALES"
+                >
+
+            </div>
+
+            <div>
+
+                <strong>PALES</strong>
+
+                <span>
+                    SECOND OWNER OF CLTR
+                </span>
+
+            </div>
+
+            <b>02</b>
+
+        </article>
+
+
+
+        <article class="member">
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/c5vpa91.png"
+                    alt="CYA"
+                >
+
+            </div>
+
+            <div>
+
+                <strong>CYA</strong>
+
+                <span>
+                    TEAM OF CLTR
+                </span>
+
+            </div>
+
+            <b>03</b>
+
+        </article>
+
+
+
+        <article class="member">
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/f1y0khs.png"
+                    alt="TATARX2"
+                >
+
+            </div>
+
+            <div>
+
+                <strong>TATARX2</strong>
+
+                <span>
+                    TEAM OF CLTR
+                </span>
+
+            </div>
+
+            <b>04</b>
+
+        </article>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- DISCORD -->
+<!-- ================================================= -->
+
+<section
+    class="discord"
+    id="discord"
+>
+
+    <div>
+
+        <span class="tag">
+            03 / DISCORD
+        </span>
+
+        <h2>
+            CLTR'YE
+            <span>KATIL.</span>
+        </h2>
+
+        <p>
+            Ekibin bir parçası ol,
+            duyuruları takip et ve topluluğa katıl.
+        </p>
+
+    </div>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="primary big"
+    >
+        DISCORD'A KATIL
+        <span>↗</span>
+    </a>
+
+</section>
+
+</main>
+
+
+
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
+
+<footer>
+
+    <span>
+        © 2026 CLTR TEAM
+    </span>
+
+    <span>
+        BUILT FOR THE COMMUNITY
+    </span>
+
+</footer>
+
+
+
+<!-- ================================================= -->
+<!-- SPOTIFY JS -->
+<!-- ================================================= -->
+
+<script>
+
+function changeSong(songId, button) {
+
+    const player = document.getElementById("spotifyPlayer");
+
+    player.src =
+        "https://open.spotify.com/embed/track/" +
+        songId +
+        "?utm_source=generator&theme=0";
+
+
+    document
+        .querySelectorAll(".track")
+        .forEach(function(track) {
+
+            track.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
