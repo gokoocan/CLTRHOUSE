@@ -1,1 +1,738 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>CLTR — Team & Bot</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ================= SPOTIFY ================= */
+
+.spotify-box {
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+}
+
+.spotify-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 14px;
+
+    color: #777;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.spotify-label i {
+    width: 6px;
+    height: 6px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #ddd;
+    box-shadow: 0 0 14px #fff;
+}
+
+.spotify-card {
+    padding: 14px;
+
+    border: 1px solid #292929;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #090909
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
+}
+
+.spotify-track {
+    margin-bottom: 10px;
+}
+
+.spotify-track:last-child {
+    margin-bottom: 0;
+}
+
+.spotify-track iframe {
+    width: 100%;
+
+    display: block;
+
+    border: 0;
+    border-radius: 12px;
+}
+
+.spotify-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 12px;
+
+    color: #444;
+
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+/* TELEFON */
+
+@media (max-width: 850px) {
+
+    .spotify-box {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="noise"></div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="nav">
+
+    <a href="#" class="brand">
+
+        <span>CLTR</span>
+
+        <small>
+            TEAM
+        </small>
+
+    </a>
+
+
+    <nav>
+
+        <a href="#bot">
+            BOT
+        </a>
+
+        <a href="#team">
+            EKİP
+        </a>
+
+        <a href="#discord">
+            DISCORD
+        </a>
+
+    </nav>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="nav-btn"
+    >
+        SUNUCUYA KATIL
+    </a>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<main>
+
+<section class="hero">
+
+
+    <div class="hero-copy">
+
+
+        <div class="eyebrow">
+
+            <i></i>
+
+            CLTR COMMUNITY
+
+        </div>
+
+
+        <h1>
+            CLTR
+        </h1>
+
+
+        <p>
+
+            Ekibin gücü, topluluğun merkezi.
+            CLTR botu ve ekibimiz için oluşturulmuş
+            özel topluluk merkezi.
+
+        </p>
+
+
+        <div class="actions">
+
+
+            <a
+                href="https://discord.gg/cltrhouse"
+                target="_blank"
+                class="primary"
+            >
+
+                DISCORD'A KATIL
+
+                <span>
+                    ↗
+                </span>
+
+            </a>
+
+
+            <a
+                href="#bot"
+                class="secondary"
+            >
+
+                BOTU KEŞFET
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= SPOTIFY ================= -->
+
+    <div class="spotify-box">
+
+
+        <div class="spotify-label">
+
+            <i></i>
+
+            CLTR MUSIC
+
+        </div>
+
+
+        <div class="spotify-card">
+
+
+            <!-- ŞARKI 1 -->
+
+            <div class="spotify-track">
+
+                <iframe
+                    src="https://open.spotify.com/embed/track/3C1GHjftT1n2Kt0qfcFhNQ?utm_source=generator&theme=0"
+                    height="152"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                ></iframe>
+
+            </div>
+
+
+            <!-- ŞARKI 2 -->
+
+            <div class="spotify-track">
+
+                <iframe
+                    src="https://open.spotify.com/embed/track/0blon1TjNYBVNauxaRBAo8?utm_source=generator&theme=0"
+                    height="152"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                ></iframe>
+
+            </div>
+
+
+            <!-- ŞARKI 3 -->
+
+            <div class="spotify-track">
+
+                <iframe
+                    src="https://open.spotify.com/embed/track/2T59gEqFlieuRWXDGezs6u?utm_source=generator&theme=0"
+                    height="152"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                ></iframe>
+
+            </div>
+
+
+            <div class="spotify-footer">
+
+                <span>
+                    CLTR / MUSIC
+                </span>
+
+                <span>
+                    EST. 2026
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOT + EKİP ================= -->
+
+<section class="split">
+
+
+<!-- ================= BOT ================= -->
+
+<div
+    class="panel bot-panel"
+    id="bot"
+>
+
+
+    <div class="panel-head">
+
+
+        <span class="tag">
+            01 / BOT
+        </span>
+
+
+        <span class="status">
+
+            <b></b>
+
+            ONLINE
+
+        </span>
+
+
+    </div>
+
+
+    <h2>
+
+        CLTR
+
+        <em>
+            BOT
+        </em>
+
+    </h2>
+
+
+    <p class="muted">
+
+        Sunucunu düzenli, hızlı ve profesyonel tutmak
+        için tasarlanmış CLTR yardımcı botu.
+
+    </p>
+
+
+    <div class="features">
+
+
+        <article>
+
+            <b>
+                01
+            </b>
+
+
+            <div>
+
+                <strong>
+                    OTO ROL
+                </strong>
+
+
+                <span>
+                    Sunucuya giren üyeye otomatik rol verir.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                02
+            </b>
+
+
+            <div>
+
+                <strong>
+                    TICKET
+                </strong>
+
+
+                <span>
+                    Özel kategorilerle hızlı destek sistemi.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                03
+            </b>
+
+
+            <div>
+
+                <strong>
+                    BAŞVURU
+                </strong>
+
+
+                <span>
+                    Ekibe özel başvuru sistemi.
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                04
+            </b>
+
+
+            <div>
+
+                <strong>
+                    DESTEK
+                </strong>
+
+
+                <span>
+                    Yetkili ekibine kolayca ulaş.
+                </span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="wide-btn"
+    >
+
+        DISCORD SUNUCUSUNA GİT
+
+        <span>
+            ↗
+        </span>
+
+    </a>
+
+
+</div>
+
+
+<!-- ================= EKİP ================= -->
+
+<div
+    class="panel team-panel"
+    id="team"
+>
+
+
+    <div class="panel-head">
+
+
+        <span class="tag">
+            02 / TEAM
+        </span>
+
+
+        <span class="count">
+            CLTR MEMBERS
+        </span>
+
+
+    </div>
+
+
+    <h2>
+        EKİBİMİZ
+    </h2>
+
+
+    <p class="muted">
+        CLTR'nin arkasındaki ekip.
+    </p>
+
+
+    <div class="members">
+
+
+        <!-- GOKO -->
+
+        <article class="member">
+
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/iiesz8m.jpg"
+                    alt="GOKO"
+                >
+
+            </div>
+
+
+            <div class="member-info">
+
+                <strong>
+                    GOKO
+                </strong>
+
+                <span>
+                    OWNER OF CLTR
+                </span>
+
+            </div>
+
+
+            <b>
+                01
+            </b>
+
+
+        </article>
+
+
+        <!-- PALES -->
+
+        <article class="member">
+
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/eg77n0t.png"
+                    alt="PALES"
+                >
+
+            </div>
+
+
+            <div class="member-info">
+
+                <strong>
+                    PALES
+                </strong>
+
+                <span>
+                    SECOND OWNER OF CLTR
+                </span>
+
+            </div>
+
+
+            <b>
+                02
+            </b>
+
+
+        </article>
+
+
+        <!-- CYA -->
+
+        <article class="member">
+
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/c5vpa91.png"
+                    alt="CYA"
+                >
+
+            </div>
+
+
+            <div class="member-info">
+
+                <strong>
+                    CYA
+                </strong>
+
+                <span>
+                    TEAM OF CLTR
+                </span>
+
+            </div>
+
+
+            <b>
+                03
+            </b>
+
+
+        </article>
+
+
+        <!-- TATARX2 -->
+
+        <article class="member">
+
+
+            <div class="avatar">
+
+                <img
+                    src="https://i.hizliresim.com/f1y0khs.png"
+                    alt="TATAR"
+                >
+
+            </div>
+
+
+            <div class="member-info">
+
+                <strong>
+                    TATAR
+                </strong>
+
+                <span>
+                    TEAM OF CLTR
+                </span>
+
+            </div>
+
+
+            <b>
+                04
+            </b>
+
+
+        </article>
+
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= DISCORD ================= -->
+
+<section
+    class="discord"
+    id="discord"
+>
+
+
+    <div>
+
+
+        <span class="tag">
+            03 / DISCORD
+        </span>
+
+
+        <h2>
+
+            CLTR'YE
+
+            <span>
+                KATIL.
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            Ekibin bir parçası ol,
+            duyuruları takip et ve topluluğa katıl.
+
+        </p>
+
+
+    </div>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        class="primary big"
+    >
+
+        DISCORD'A KATIL
+
+        <span>
+            ↗
+        </span>
+
+    </a>
+
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <span>
+        © 2026 CLTR TEAM
+    </span>
+
+
+    <span>
+        BUILT FOR THE COMMUNITY
+    </span>
+
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
