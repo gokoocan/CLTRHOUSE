@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -9,797 +9,1044 @@ html {
 }
 
 body {
+    margin: 0;
     min-height: 100vh;
+
+    background: #070707;
+    color: #eeeeee;
+
+    font-family: Inter, Arial, sans-serif;
+
     overflow-x: hidden;
-
-    background: #050505 !important;
-    color: #d8d8d8;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    animation: pageIn 1s ease forwards;
 }
 
-/* =========================
-   ARKA PLAN
-========================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    z-index: -2;
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            500px 450px at 0% 0%,
-            rgba(255,255,255,.025),
-            transparent 75%
-        ),
-        radial-gradient(
-            500px 450px at 100% 100%,
-            rgba(180,140,60,.025),
-            transparent 75%
-        );
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    z-index: -1;
-    pointer-events: none;
-
-    background: radial-gradient(
-        ellipse at center,
-        transparent 35%,
-        rgba(0,0,0,.5)
-    );
+button,
+input {
+    font-family: inherit;
 }
 
 .noise {
-    display: none !important;
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .035;
+
+    z-index: 50;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* =========================
-   GİRİŞ
-========================= */
 
-@keyframes pageIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* =========================
-   NAVBAR
-========================= */
+/* ================= NAV ================= */
 
 .nav {
-    height: 78px;
+    height: 82px;
+
     padding: 0 6vw;
 
     display: flex;
     align-items: center;
 
+    gap: 40px;
+
     position: sticky;
     top: 0;
-    z-index: 100;
 
-    background: rgba(5,5,5,.82);
+    z-index: 40;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(7, 7, 7, .92);
 
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid #1c1c1c;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 9px;
 
-    color: #d7d7d7;
+    gap: 10px;
+
+    color: #fff;
+
     text-decoration: none;
 
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 900;
+
     letter-spacing: -1px;
 }
 
-.brand span {
-    color: #c5c5c5 !important;
-}
-
 .brand small {
-    color: #4b4b4b;
+    margin-top: 13px;
 
-    font-size: 7px;
-    font-weight: 800;
+    color: #777;
+
+    font-size: 8px;
+
     letter-spacing: 3px;
 }
 
 .nav nav {
     display: flex;
-    gap: 32px;
+
+    gap: 28px;
 
     margin-left: auto;
-    margin-right: 30px;
 }
 
-.nav nav a {
-    color: #555;
+.nav nav a,
+.nav-btn {
+    color: #888;
 
     text-decoration: none;
 
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 800;
+
     letter-spacing: 2px;
 
-    transition: .25s;
+    transition: .2s ease;
 }
 
 .nav nav a:hover {
-    color: #eee;
+    color: #fff;
 }
 
 .nav-btn {
-    padding: 11px 16px;
+    padding: 12px 17px;
 
-    color: #777;
+    border: 1px solid #3a3a3a;
 
-    text-decoration: none;
-
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-
-    border: 1px solid #2d2d2d;
-
-    transition: .25s;
+    color: #ddd;
 }
 
 .nav-btn:hover {
-    color: #eee;
-    border-color: #666;
+    color: #080808;
+
+    background: #eee;
 }
 
-/* =========================
-   HERO
-========================= */
+
+/* ================= HERO ================= */
 
 .hero {
-    min-height: 700px;
+    min-height: 610px;
 
-    padding: 90px 8vw;
+    padding: 70px 8vw;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     align-items: center;
 
-    position: relative;
+    border-bottom: 1px solid #1a1a1a;
 
-    border-bottom: 1px solid rgba(255,255,255,.055);
-}
-
-/* =========================
-   CLTR
-========================= */
-
-.hero h1 {
-    margin: 30px 0;
-
-    position: relative;
-
-    font-size: clamp(95px, 14vw, 190px);
-    line-height: .72;
-    letter-spacing: -.095em;
-
-    /* SABİT METALİK */
-    background: linear-gradient(
-        180deg,
-        #f2f2f2 0%,
-        #cfcfcf 15%,
-        #8a8a8a 32%,
-        #5b5b5b 47%,
-        #bdbdbd 58%,
-        #707070 73%,
-        #a8a8a8 84%,
-        #dedede 100%
-    ) !important;
-
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-
-    filter:
-        drop-shadow(0 4px 5px rgba(0,0,0,.9));
-
-    animation:
-        cltrIn 1.35s cubic-bezier(.16,1,.3,1) .15s both;
-}
-
-@keyframes cltrIn {
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(30px)
-            scale(.96);
-
-        filter:
-            blur(12px)
-            drop-shadow(0 4px 5px rgba(0,0,0,.9));
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:
-            blur(0)
-            drop-shadow(0 4px 5px rgba(0,0,0,.9));
-    }
-}
-
-/* METALİK IŞIK */
-
-.hero h1::after {
-    content: "";
-
-    position: absolute;
-
-    top: -15%;
-    left: -30%;
-
-    width: 13%;
-    height: 130%;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.55),
-        transparent
-    );
-
-    transform: skewX(-18deg);
-
-    animation:
-        shine 1.2s ease 1.1s forwards;
-}
-
-@keyframes shine {
-    0% {
-        left: -30%;
-        opacity: 0;
-    }
-
-    15% {
-        opacity: .65;
-    }
-
-    50% {
-        opacity: .25;
-    }
-
-    100% {
-        left: 120%;
-        opacity: 0;
-    }
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #242424 0,
+            #0d0d0d 28%,
+            #070707 58%
+        );
 }
 
 .hero-copy {
-    position: relative;
-    z-index: 2;
-
-    animation:
-        heroIn 1s ease .15s both;
+    max-width: 620px;
 }
 
-@keyframes heroIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+.eyebrow,
+.tag {
+    color: #777;
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.eyebrow {
-    color: #626262;
-
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 800;
+
     letter-spacing: 3px;
 }
 
 .eyebrow i {
-    width: 5px;
-    height: 5px;
-
-    margin-right: 8px;
-
     display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 9px;
 
     border-radius: 50%;
 
-    background: #ccc;
+    background: #ddd;
+
+    box-shadow: 0 0 14px #fff;
 }
 
-.hero-copy > p {
-    max-width: 470px;
+.hero h1 {
+    margin: 30px 0 34px;
 
-    color: #5b5b5b;
+    font-size: clamp(90px, 14vw, 190px);
 
-    font-size: 12px;
+    line-height: .75;
+
+    letter-spacing: -.09em;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fff,
+            #6d6d6d 48%,
+            #fff 78%,
+            #444
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 490px;
+
+    color: #8e8e8e;
+
+    font-size: 13px;
+
     line-height: 1.8;
 }
 
-/* =========================
-   BUTONLAR
-========================= */
-
 .actions {
     display: flex;
-    gap: 10px;
+
+    gap: 12px;
 
     margin-top: 30px;
 }
 
 .primary,
-.secondary {
-    min-height: 44px;
-
-    padding: 0 18px;
-
+.secondary,
+.wide-btn {
     display: inline-flex;
-    align-items: center;
 
-    gap: 25px;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding: 15px 18px;
 
     text-decoration: none;
 
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1.7px;
 
-    transition: .25s;
+    letter-spacing: 1.8px;
+
+    transition: .2s ease;
 }
 
 .primary {
     color: #080808;
 
-    background: #e4e4e4;
-
-    border: 1px solid #e4e4e4;
+    background: #eee;
 }
 
 .primary:hover {
-    background: white;
+    background: #fff;
 
     transform: translateY(-2px);
 }
 
 .secondary {
-    color: #777;
+    color: #bbb;
 
-    background: transparent;
-
-    border: 1px solid #2d2d2d;
+    border: 1px solid #303030;
 }
 
 .secondary:hover {
-    color: white;
+    color: #fff;
 
-    border-color: #666;
+    border-color: #777;
 }
 
-/* =========================
-   SPOTIFY
-========================= */
 
-.spotify-box {
-    width: 100%;
+/* ================= HERO LOGO ================= */
 
-    max-width: 520px;
+.hero-mark {
+    height: 420px;
 
-    margin-left: auto;
+    display: grid;
+
+    place-items: center;
 
     position: relative;
+}
+
+.chrome {
     z-index: 2;
-}
 
-.spotify-title {
-    display: flex !important;
-    align-items: center;
+    font-size: clamp(70px, 10vw, 150px);
 
-    gap: 9px;
+    font-weight: 900;
 
-    margin-bottom: 16px !important;
-
-    color: #666 !important;
-
-    font-size: 8px !important;
-    font-weight: 800 !important;
-    letter-spacing: 3px !important;
-}
-
-.spotify-title i {
-    width: 5px !important;
-    height: 5px !important;
-
-    background: #ccc !important;
-
-    box-shadow: none !important;
-}
-
-.spotify-card {
-    padding: 12px !important;
+    letter-spacing: -.1em;
 
     background:
         linear-gradient(
-            145deg,
-            #151515,
-            #080808
-        ) !important;
+            #fafafa,
+            #707070 27%,
+            #111 48%,
+            #aaa 70%,
+            #fff
+        );
 
-    border: 1px solid #292929 !important;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.65) !important;
+    color: transparent;
+
+    filter: drop-shadow(0 20px 25px #000);
 }
 
-.spotify-track iframe {
-    width: 100%;
+.ring {
+    position: absolute;
 
-    display: block;
+    border: 1px solid #252525;
 
-    border: 0 !important;
-    border-radius: 12px !important;
+    border-radius: 50%;
 }
 
-.spotify-footer {
-    color: #414141 !important;
-
-    font-size: 7px !important;
-    letter-spacing: 3px !important;
+.ring-a {
+    width: 370px;
+    height: 370px;
 }
 
-/* =========================
-   ALT PANELLER
-========================= */
+.ring-b {
+    width: 270px;
+    height: 270px;
+
+    border-color: #353535;
+}
+
+.mark-line {
+    position: absolute;
+
+    bottom: 30px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+}
+
+
+/* ================= PANELS ================= */
 
 .split {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.08fr .92fr;
 
     margin: 0 6vw;
 }
 
 .panel {
-    padding: 65px 5vw;
+    padding: 55px 5vw;
 
-    position: relative;
-
-    border-left: 1px solid rgba(255,255,255,.05);
+    border-left: 1px solid #1b1b1b;
 }
 
 .team-panel {
-    border-right: 1px solid rgba(255,255,255,.05);
+    border-right: 1px solid #1b1b1b;
 }
 
 .panel-head {
     display: flex;
-    justify-content: space-between;
 
-    margin-bottom: 27px;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 32px;
 }
 
-.tag,
-.status,
+.status {
+    color: #666;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.status b {
+    display: inline-block;
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #bbb;
+}
+
 .count {
     color: #444;
 
-    font-size: 7px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
+    font-size: 8px;
+
+    letter-spacing: 2px;
 }
 
-.panel h2 {
-    margin-bottom: 12px;
-
-    color: #ddd;
+.panel h2,
+.music-section h2 {
+    margin: 12px 0;
 
     font-size: 34px;
-    font-weight: 800;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
 }
 
-.panel h2 em {
-    color: #505050;
+.panel h2 em,
+.music-section h2 em {
+    color: #777;
 
     font-style: normal;
 }
 
 .muted {
-    max-width: 450px;
+    color: #6f6f6f;
 
-    color: #555;
+    font-size: 12px;
 
-    font-size: 11px;
-    line-height: 1.8;
+    line-height: 1.7;
 }
 
-/* =========================
-   FEATURES
-========================= */
+
+/* ================= FEATURES ================= */
 
 .features {
-    margin: 30px 0;
+    margin: 35px 0;
 }
 
 .features article {
-    min-height: 66px;
-
     display: flex;
-    align-items: center;
 
-    gap: 18px;
+    gap: 20px;
 
-    border-top: 1px solid rgba(255,255,255,.045);
+    padding: 17px 0;
 
-    transition: .25s;
+    border-top: 1px solid #1b1b1b;
 }
 
 .features article:last-child {
-    border-bottom: 1px solid rgba(255,255,255,.045);
-}
-
-.features article:hover {
-    padding-left: 7px;
+    border-bottom: 1px solid #1b1b1b;
 }
 
 .features article > b {
-    color: #3b3b3b;
-
-    font-size: 8px;
-}
-
-.features strong {
-    display: block;
-
-    color: #999;
-
-    font-size: 8px;
-    letter-spacing: 2px;
-}
-
-.features span {
-    display: block;
-
-    margin-top: 6px;
-
-    color: #494949;
+    color: #444;
 
     font-size: 9px;
 }
 
-/* =========================
-   GENEL BUTON
-========================= */
+.features strong,
+.features span {
+    display: block;
+}
+
+.features strong {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.features span {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 10px;
+}
 
 .wide-btn {
     width: 100%;
-    min-height: 46px;
 
-    padding: 0 16px;
+    color: #ddd;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background: #111;
 
-    color: #777;
-
-    text-decoration: none;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 1.7px;
-
-    border: 1px solid #292929;
-
-    background: transparent;
-
-    transition: .25s;
+    border: 1px solid #2a2a2a;
 }
 
 .wide-btn:hover {
     color: #080808;
 
-    background: #ddd;
-
-    border-color: #ddd;
+    background: #eee;
 }
 
-/* =========================
-   EKİP
-========================= */
+
+/* ================= MEMBERS ================= */
 
 .members {
-    margin-top: 30px;
+    width: 100%;
+
+    margin-top: 32px;
 }
 
 .member {
-    min-height: 76px;
-
     display: grid;
 
-    grid-template-columns: 52px 1fr 25px;
+    grid-template-columns: 56px minmax(0, 1fr) 24px;
 
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 
-    border-top: 1px solid rgba(255,255,255,.045);
+    min-width: 0;
 
-    transition: .25s;
+    padding: 14px 0;
+
+    border-top: 1px solid #1b1b1b;
 }
 
 .member:last-child {
-    border-bottom: 1px solid rgba(255,255,255,.045);
-}
-
-.member:hover {
-    transform: translateX(5px);
+    border-bottom: 1px solid #1b1b1b;
 }
 
 .avatar {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
 
-    overflow: hidden;
+    min-width: 56px;
+    min-height: 56px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #2b2b2b;
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #3a3a3a;
 
     border-radius: 50%;
 
-    background: #0a0a0a;
+    background: #111;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 5px 20px rgba(0,0,0,.35);
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
 
+    min-width: 100%;
+    min-height: 100%;
+
+    display: block;
+
     object-fit: contain;
+
+    object-position: center;
 
     border-radius: 50%;
 }
 
-.member strong {
-    color: #aaa;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
+.member-info {
+    min-width: 0;
 }
 
+.member strong,
 .member span {
     display: block;
 
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.member strong {
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.member span {
     margin-top: 5px;
 
-    color: #444;
+    color: #555;
 
-    font-size: 7px;
+    font-size: 8px;
 
     letter-spacing: 2px;
 }
 
 .member > b {
-    color: #3b3b3b;
+    color: #444;
+
+    font-size: 9px;
+
+    text-align: right;
 }
 
-/* =========================
-   DISCORD
-========================= */
 
-.discord {
-    margin: 75px 6vw;
+/* ================= MUSIC ================= */
 
-    padding: 65px 6vw;
+.music-section {
+    margin: 80px 6vw;
 
+    padding: 55px 5vw;
+
+    border: 1px solid #252525;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #181818,
+            #0b0b0b 50%,
+            #080808
+        );
+}
+
+.music-head {
     display: flex;
-    align-items: center;
+
     justify-content: space-between;
+    align-items: flex-start;
 
-    gap: 40px;
-
-    position: relative;
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,.055);
-
-    background: rgba(255,255,255,.008);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.5);
+    margin-bottom: 35px;
 }
 
-.discord h2 {
-    margin: 17px 0 8px;
+.music-head h2 {
+    margin-top: 15px;
+    margin-bottom: 8px;
 
-    color: #ddd;
+    font-size: clamp(34px, 5vw, 60px);
 
-    font-size: clamp(38px,5vw,67px);
-
-    line-height: .9;
-
-    letter-spacing: -4px;
+    letter-spacing: -3px;
 }
 
-.discord h2 span {
-    color: #505050;
+.music-head p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 12px;
 }
 
-.discord p {
+.music-count {
+    color: #444;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ================= PLAYER ================= */
+
+.player {
+    padding: 30px;
+
+    border: 1px solid #242424;
+
+    background: #0d0d0d;
+}
+
+.player-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.now-playing {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.disc {
+    width: 62px;
+    height: 62px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #222 0px,
+            #222 2px,
+            #0b0b0b 3px,
+            #0b0b0b 6px
+        );
+
+    border: 1px solid #444;
+
+    animation: spin 7s linear infinite;
+
+    animation-play-state: paused;
+}
+
+.player.playing .disc {
+    animation-play-state: running;
+}
+
+.disc-center {
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: #aaa;
+
+    border: 3px solid #111;
+}
+
+.song-info {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.playing-label {
     color: #555;
 
-    font-size: 11px;
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.song-info strong {
+    margin-top: 7px;
 
-footer {
-    min-height: 70px;
+    color: #eee;
 
-    padding: 0 6vw;
+    font-size: 12px;
 
+    letter-spacing: 1px;
+}
+
+.song-info small {
+    margin-top: 5px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.player-actions {
     display: flex;
+
     align-items: center;
-    justify-content: space-between;
 
-    color: #373737;
+    gap: 12px;
+}
 
-    font-size: 7px;
+.control {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid #333;
+
+    color: #aaa;
+
+    background: #111;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.control:hover {
+    color: #fff;
+
+    border-color: #777;
+}
+
+.control.play {
+    width: 52px;
+    height: 52px;
+
+    color: #080808;
+
+    background: #eee;
+
+    border-color: #eee;
+
+    font-size: 14px;
+}
+
+.control.play:hover {
+    background: #fff;
+}
+
+.control.small {
+    font-size: 24px;
+}
+
+
+/* ================= TIMELINE ================= */
+
+.timeline {
+    display: grid;
+
+    grid-template-columns: 38px 1fr 38px;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.timeline span,
+.volume-row span {
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+input[type="range"] {
+    width: 100%;
+
+    height: 3px;
+
+    appearance: none;
+
+    background: #292929;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    cursor: pointer;
+}
+
+
+/* ================= VOLUME ================= */
+
+.volume-row {
+    display: grid;
+
+    grid-template-columns: 30px 1fr 40px;
+
+    align-items: center;
+
+    gap: 12px;
+
+    max-width: 300px;
+
+    margin-top: 20px;
+}
+
+
+/* ================= TRACK LIST ================= */
+
+.track-list {
+    margin-top: 20px;
+
+    border-top: 1px solid #1b1b1b;
+}
+
+.track {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 50px 1fr 60px;
+
+    align-items: center;
+
+    padding: 18px 5px;
+
+    border: 0;
+
+    border-bottom: 1px solid #1b1b1b;
+
+    color: #777;
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.track:hover {
+    color: #fff;
+
+    background: rgba(255,255,255,.02);
+}
+
+.track.active {
+    color: #eee;
+}
+
+.track-number {
+    color: #444;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.track-name {
+    font-size: 10px;
+
     font-weight: 800;
 
     letter-spacing: 2px;
-
-    border-top: 1px solid rgba(255,255,255,.05);
 }
 
-/* =========================
-   MOBİL
-========================= */
+.track-status {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-align: right;
+}
+
+.track.active .track-status {
+    color: #aaa;
+}
+
+
+/* ================= DISCORD ================= */
+
+.discord {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    margin: 80px 6vw;
+
+    padding: 55px 6vw;
+
+    border: 1px solid #252525;
+
+    background:
+        linear-gradient(
+            120deg,
+            #111,
+            #080808
+        );
+}
+
+.discord h2 {
+    margin: 18px 0 8px;
+
+    font-size: clamp(34px, 5vw, 65px);
+
+    letter-spacing: -3px;
+}
+
+.discord h2 span {
+    color: #555;
+}
+
+.discord p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+.big {
+    min-width: 190px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 24px 6vw;
+
+    color: #3f3f3f;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    border-top: 1px solid #1a1a1a;
+}
+
+
+/* ================= ANIMATION ================= */
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* ================= TABLET ================= */
 
 @media (max-width: 850px) {
 
@@ -821,10 +1068,18 @@ footer {
         padding: 70px 7vw;
     }
 
-    .spotify-box {
-        max-width: 100%;
+    .hero-mark {
+        height: 270px;
+    }
 
-        margin-top: 60px;
+    .ring-a {
+        width: 240px;
+        height: 240px;
+    }
+
+    .ring-b {
+        width: 180px;
+        height: 180px;
     }
 
     .split {
@@ -834,37 +1089,38 @@ footer {
     }
 
     .panel {
-        border-right: 1px solid rgba(255,255,255,.05);
+        border-right: 1px solid #1b1b1b;
+    }
+
+    .music-section {
+        margin: 50px 5vw;
     }
 
     .discord {
-        margin: 55px 5vw;
-
         flex-direction: column;
+
         align-items: flex-start;
+
+        margin: 50px 5vw;
     }
 
     .discord .big {
         width: 100%;
     }
+
 }
 
-@media (max-width: 500px) {
 
-    .nav {
-        height: 70px;
-    }
+/* ================= TELEFON ================= */
+
+@media (max-width: 500px) {
 
     .nav-btn {
         display: none;
     }
 
-    .hero {
-        padding: 60px 6vw;
-    }
-
     .hero h1 {
-        font-size: 88px;
+        font-size: 90px;
     }
 
     .actions {
@@ -876,22 +1132,59 @@ footer {
     }
 
     .panel {
-        padding: 50px 7vw;
+        padding: 45px 7vw;
     }
 
-    .discord {
-        padding: 50px 7vw;
+    .member {
+        grid-template-columns: 50px minmax(0, 1fr) 20px;
+
+        gap: 12px;
     }
 
-    .discord h2 {
-        font-size: 43px;
+    .avatar {
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .music-section {
+        padding: 40px 6vw;
+    }
+
+    .music-head {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .player {
+        padding: 22px;
+    }
+
+    .player-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .player-actions {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .track {
+        grid-template-columns: 40px 1fr 45px;
     }
 
     footer {
-        padding: 20px 5vw;
-
         flex-direction: column;
 
-        gap: 15px;
+        gap: 10px;
+
+        padding: 20px 5vw;
     }
+
 }
