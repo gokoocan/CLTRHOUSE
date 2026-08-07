@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -17,45 +13,29 @@ html {
 body {
     min-height: 100vh;
     overflow-x: hidden;
-
     background: #050505;
-    color: #ededed;
-
-    font-family: 'Inter', Arial, sans-serif;
+    color: #e8e8e8;
+    font-family: Inter, Arial, sans-serif;
 }
 
-/* =====================================================
-   AMBIENT BACKGROUND
-===================================================== */
-
+/* Venny tarzı loş arka plan */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-
     z-index: -2;
     pointer-events: none;
 
     background:
         radial-gradient(
-            700px 500px at -5% -5%,
-            rgba(198, 151, 55, .055),
+            600px 500px at 0% 0%,
+            rgba(255,255,255,.025),
             transparent 70%
         ),
         radial-gradient(
-            700px 500px at 105% -5%,
-            rgba(198, 151, 55, .045),
-            transparent 70%
-        ),
-        radial-gradient(
-            800px 600px at -5% 105%,
-            rgba(198, 151, 55, .035),
-            transparent 70%
-        ),
-        radial-gradient(
-            800px 600px at 105% 105%,
-            rgba(198, 151, 55, .045),
-            transparent 70%
+            650px 550px at 100% 100%,
+            rgba(180,140,60,.035),
+            transparent 72%
         );
 }
 
@@ -63,30 +43,24 @@ body::after {
     content: "";
     position: fixed;
     inset: 0;
-
     z-index: -1;
     pointer-events: none;
 
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 35%,
-            rgba(0,0,0,.42) 100%
-        );
+    background: radial-gradient(
+        ellipse at center,
+        transparent 35%,
+        rgba(0,0,0,.5) 100%
+    );
 }
 
-/* Karıncalanmayı tamamen kapat */
 .noise {
     display: none !important;
 }
 
-/* =====================================================
-   NAVBAR
-===================================================== */
+/* NAVBAR */
 
 .nav {
     height: 78px;
-
     padding: 0 6vw;
 
     display: flex;
@@ -96,12 +70,11 @@ body::after {
     top: 0;
     z-index: 100;
 
-    background: rgba(5,5,5,.82);
+    background: rgba(5,5,5,.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-
-    border-bottom: 1px solid rgba(255,255,255,.055);
+    border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
 .brand {
@@ -117,101 +90,63 @@ body::after {
     letter-spacing: -1px;
 }
 
-.brand span {
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #a8a8a8 32%,
-            #3f3f3f 48%,
-            #eeeeee 58%,
-            #777 78%,
-            #f5f5f5 100%
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
 .brand small {
-    margin-top: 11px;
-
     color: #555;
-
     font-size: 7px;
-    font-weight: 800;
-
     letter-spacing: 3px;
 }
 
 .nav nav {
     display: flex;
-    align-items: center;
-
-    gap: 32px;
-
+    gap: 34px;
     margin-left: auto;
-    margin-right: 35px;
+    margin-right: 32px;
 }
 
 .nav nav a {
-    color: #686868;
-
+    color: #666;
     text-decoration: none;
 
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 800;
-
     letter-spacing: 2px;
 
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .nav nav a:hover {
-    color: #e0e0e0;
+    color: #eee;
 }
 
 .nav-btn {
     padding: 11px 16px;
 
-    color: #a7a7a7;
-
+    color: #999;
     text-decoration: none;
 
     font-size: 8px;
     font-weight: 800;
-
-    letter-spacing: 1.7px;
+    letter-spacing: 1.5px;
 
     border: 1px solid #303030;
+    background: transparent;
 
-    background: rgba(255,255,255,.012);
-
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .nav-btn:hover {
     color: #fff;
-
-    border-color: #686868;
-
-    background: rgba(255,255,255,.025);
+    border-color: #666;
 }
 
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero {
-    min-height: 690px;
-
-    padding: 85px 8vw;
+    min-height: 700px;
+    padding: 90px 8vw;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-
     align-items: center;
 
     position: relative;
@@ -219,286 +154,199 @@ body::after {
     border-bottom: 1px solid rgba(255,255,255,.055);
 }
 
-/* Çok hafif üst/alt ambient */
-
-.hero::before {
-    content: "";
-
-    position: absolute;
-
-    left: 5%;
-    right: 5%;
-    bottom: 0;
-
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(210,165,70,.12),
-            transparent
-        );
-
-    box-shadow:
-        0 0 18px rgba(210,165,70,.035);
-
-    pointer-events: none;
-}
-
 .hero-copy {
-    max-width: 610px;
-
     position: relative;
     z-index: 2;
 }
 
-/* =====================================================
-   EYEBROW
-===================================================== */
-
 .eyebrow {
-    display: flex;
-    align-items: center;
-
     color: #666;
 
     font-size: 8px;
     font-weight: 800;
-
     letter-spacing: 3px;
 }
 
 .eyebrow i {
-    width: 5px;
-    height: 5px;
-
-    margin-right: 9px;
-
     display: inline-block;
 
+    width: 5px;
+    height: 5px;
+    margin-right: 8px;
+
     border-radius: 50%;
+    background: #ccc;
 
-    background: #d5d5d5;
-
-    box-shadow:
-        0 0 8px rgba(255,255,255,.35);
+    box-shadow: 0 0 8px rgba(255,255,255,.35);
 }
 
-/* =====================================================
-   CLTR CHROME
-===================================================== */
+/* KROM CLTR */
 
 .hero h1 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0;
 
     font-size: clamp(95px, 14vw, 190px);
-
     line-height: .72;
-
-    letter-spacing: -.095em;
+    letter-spacing: -.1em;
 
     background:
         linear-gradient(
             180deg,
-
-            #ffffff 0%,
-            #eeeeee 9%,
-            #8f8f8f 25%,
-            #3b3b3b 39%,
-            #fafafa 48%,
-            #bcbcbc 58%,
-            #4a4a4a 72%,
-            #dcdcdc 84%,
-            #ffffff 100%
+            #fff 0%,
+            #cfcfcf 14%,
+            #555 29%,
+            #191919 40%,
+            #eee 49%,
+            #777 63%,
+            #222 76%,
+            #ddd 88%,
+            #fff 100%
         );
 
     -webkit-background-clip: text;
     background-clip: text;
-
     color: transparent;
 
     filter:
-        drop-shadow(0 3px 3px rgba(0,0,0,.85))
+        drop-shadow(0 3px 4px rgba(0,0,0,.9))
         drop-shadow(0 0 25px rgba(255,255,255,.025));
 }
-
-/* =====================================================
-   HERO TEXT
-===================================================== */
 
 .hero-copy > p {
     max-width: 470px;
 
-    color: #666;
+    color: #626262;
 
     font-size: 12px;
     line-height: 1.8;
 }
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+/* BUTTONS */
 
 .actions {
     display: flex;
     gap: 10px;
-
     margin-top: 30px;
 }
 
 .primary,
 .secondary {
     min-height: 44px;
-
-    padding: 0 17px;
+    padding: 0 18px;
 
     display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-
     gap: 25px;
 
     text-decoration: none;
 
     font-size: 8px;
     font-weight: 800;
-
     letter-spacing: 1.7px;
 
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .primary {
     color: #080808;
-
-    background: #e4e4e4;
-
-    border: 1px solid #e4e4e4;
+    background: #e7e7e7;
+    border: 1px solid #e7e7e7;
 }
 
 .primary:hover {
     background: #fff;
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 30px rgba(255,255,255,.08);
 }
 
 .secondary {
     color: #777;
-
-    border: 1px solid #2d2d2d;
-
-    background: rgba(255,255,255,.008);
+    background: transparent;
+    border: 1px solid #303030;
 }
 
 .secondary:hover {
-    color: #ddd;
-
-    border-color: #555;
+    color: #eee;
+    border-color: #666;
 }
 
-/* =====================================================
-   MUSIC SIDE
-===================================================== */
+/* PLAYER */
 
 .hero-mark {
     width: min(100%, 520px);
-
     margin-left: auto;
 
     position: relative;
     z-index: 2;
 }
 
-/* Ambient player arkasında */
-
 .hero-mark::before {
     content: "";
 
     position: absolute;
-
-    inset: -130px;
+    inset: -120px;
 
     z-index: -1;
 
     background:
         radial-gradient(
             ellipse,
-            rgba(190,145,50,.035),
+            rgba(190,145,55,.035),
             transparent 70%
         );
 
     filter: blur(55px);
-
-    pointer-events: none;
 }
 
 .music-heading {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
     margin-bottom: 15px;
 
     color: #666;
 
     font-size: 8px;
     font-weight: 800;
-
     letter-spacing: 3px;
 }
 
 .music-heading i {
-    width: 5px;
-    height: 5px;
-
     display: inline-block;
 
+    width: 5px;
+    height: 5px;
+    margin-right: 8px;
+
     border-radius: 50%;
-
     background: #ccc;
-
-    box-shadow:
-        0 0 8px rgba(255,255,255,.35);
 }
 
-/* =====================================================
-   MUSIC PLAYER
-===================================================== */
+/* PLAYER CARD */
 
 .music-player {
     padding: 10px;
 
-    position: relative;
-
     background:
         linear-gradient(
             145deg,
-            rgba(24,24,24,.95),
+            rgba(22,22,22,.96),
             rgba(7,7,7,.98)
         );
 
-    border: 1px solid rgba(255,255,255,.075);
+    border: 1px solid rgba(255,255,255,.065);
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.65),
+        0 35px 90px rgba(0,0,0,.7),
         inset 0 1px 0 rgba(255,255,255,.035);
-}
 
-/* ince altın yansıma */
+    position: relative;
+}
 
 .music-player::before {
     content: "";
 
     position: absolute;
 
-    left: 15%;
-    right: 15%;
     top: 0;
+    left: 18%;
+    right: 18%;
 
     height: 1px;
 
@@ -506,7 +354,7 @@ body::after {
         linear-gradient(
             90deg,
             transparent,
-            rgba(210,165,70,.2),
+            rgba(210,165,70,.16),
             transparent
         );
 }
@@ -521,14 +369,11 @@ body::after {
     border-radius: 11px;
 }
 
-/* =====================================================
-   TRACK LIST
-===================================================== */
+/* TRACKS */
 
 .track-list {
-    margin-top: 17px;
-
-    border-top: 1px solid rgba(255,255,255,.06);
+    margin-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.05);
 }
 
 .track-title {
@@ -538,21 +383,17 @@ body::after {
 
     font-size: 7px;
     font-weight: 800;
-
     letter-spacing: 2.5px;
 }
 
 .track {
     width: 100%;
-
-    min-height: 62px;
+    min-height: 60px;
 
     padding: 0 12px;
 
     display: grid;
-
-    grid-template-columns: 35px 1fr 25px;
-
+    grid-template-columns: 35px 1fr 20px;
     align-items: center;
 
     text-align: left;
@@ -560,23 +401,16 @@ body::after {
     color: #777;
 
     background: transparent;
-
     border: 0;
-    border-top: 1px solid rgba(255,255,255,.045);
+    border-top: 1px solid rgba(255,255,255,.04);
 
     cursor: pointer;
 
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .track:hover {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025),
-            transparent
-        );
-
+    background: rgba(255,255,255,.018);
     color: #ccc;
 }
 
@@ -590,33 +424,23 @@ body::after {
 }
 
 .track-number {
-    color: #404040;
-
+    color: #414141;
     font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
 }
 
 .track.active .track-number {
-    color: #9a7940;
-}
-
-.track-info {
-    min-width: 0;
+    color: #9b7941;
 }
 
 .track-name {
-    overflow: hidden;
-
     color: #999;
 
     font-size: 9px;
     font-weight: 800;
-
     letter-spacing: 1.5px;
 
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -630,56 +454,36 @@ body::after {
     color: #444;
 
     font-size: 7px;
-    font-weight: 700;
-
     letter-spacing: 2px;
 }
 
 .track-arrow {
     color: #444;
-
-    font-size: 8px;
-
     text-align: right;
 }
-
-.track.active .track-arrow {
-    color: #aaa;
-}
-
-/* =====================================================
-   MUSIC FOOTER
-===================================================== */
 
 .music-footer {
     display: flex;
     justify-content: space-between;
 
-    margin-top: 14px;
+    margin-top: 13px;
 
-    color: #3d3d3d;
+    color: #3c3c3c;
 
     font-size: 7px;
-    font-weight: 800;
-
     letter-spacing: 2.5px;
 }
 
-/* =====================================================
-   BOT + TEAM
-===================================================== */
+/* ALT BÖLÜMLER */
 
 .split {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
 
     margin: 0 6vw;
 }
 
 .panel {
-    min-width: 0;
-
     padding: 65px 5vw;
 
     position: relative;
@@ -691,108 +495,34 @@ body::after {
     border-right: 1px solid rgba(255,255,255,.05);
 }
 
-/* Köşe ambientleri */
-
-.bot-panel::before {
-    content: "";
-
-    position: absolute;
-
-    width: 420px;
-    height: 420px;
-
-    left: -280px;
-    bottom: -280px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(190,145,50,.025),
-            transparent 70%
-        );
-
-    filter: blur(45px);
-
-    pointer-events: none;
-}
-
-.team-panel::before {
-    content: "";
-
-    position: absolute;
-
-    width: 420px;
-    height: 420px;
-
-    right: -280px;
-    bottom: -280px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(190,145,50,.025),
-            transparent 70%
-        );
-
-    filter: blur(45px);
-
-    pointer-events: none;
-}
-
-/* =====================================================
-   PANEL HEAD
-===================================================== */
-
 .panel-head {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 
-    margin-bottom: 25px;
+    margin-bottom: 27px;
 }
 
-.tag {
-    color: #4d4d4d;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 2.5px;
-}
-
+.tag,
 .status,
 .count {
-    color: #454545;
+    color: #484848;
 
     font-size: 7px;
     font-weight: 800;
-
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
 }
 
 .status b {
-    width: 5px;
-    height: 5px;
-
-    margin-right: 7px;
-
     display: inline-block;
 
+    width: 5px;
+    height: 5px;
+    margin-right: 7px;
+
     border-radius: 50%;
-
     background: #ccc;
-
-    box-shadow:
-        0 0 8px rgba(255,255,255,.3);
 }
-
-/* =====================================================
-   PANEL TITLES
-===================================================== */
 
 .panel h2 {
     margin-bottom: 12px;
@@ -801,32 +531,27 @@ body::after {
 
     font-size: 34px;
     font-weight: 800;
-
     letter-spacing: -1.5px;
 }
 
 .panel h2 em {
     color: #505050;
-
     font-style: normal;
 }
 
 .muted {
     max-width: 450px;
 
-    color: #5a5a5a;
+    color: #555;
 
     font-size: 11px;
     line-height: 1.8;
 }
 
-/* =====================================================
-   FEATURES
-===================================================== */
+/* FEATURES */
 
 .features {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0;
 }
 
 .features article {
@@ -834,34 +559,23 @@ body::after {
 
     display: flex;
     align-items: center;
-
     gap: 18px;
 
-    border-top: 1px solid rgba(255,255,255,.05);
+    border-top: 1px solid rgba(255,255,255,.045);
 
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .features article:last-child {
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom: 1px solid rgba(255,255,255,.045);
 }
 
 .features article:hover {
     padding-left: 7px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(190,145,50,.02),
-            transparent
-        );
 }
 
 .features article > b {
-    width: 22px;
-
-    color: #3f3f3f;
-
+    color: #3b3b3b;
     font-size: 8px;
 }
 
@@ -871,8 +585,6 @@ body::after {
     color: #999;
 
     font-size: 8px;
-    font-weight: 800;
-
     letter-spacing: 2px;
 }
 
@@ -881,14 +593,12 @@ body::after {
 
     margin-top: 6px;
 
-    color: #4d4d4d;
+    color: #494949;
 
     font-size: 9px;
 }
 
-/* =====================================================
-   WIDE BUTTON
-===================================================== */
+/* WIDE BUTTON */
 
 .wide-btn {
     width: 100%;
@@ -906,27 +616,21 @@ body::after {
 
     font-size: 8px;
     font-weight: 800;
-
     letter-spacing: 1.7px;
 
     border: 1px solid #292929;
+    background: transparent;
 
-    background: rgba(255,255,255,.008);
-
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .wide-btn:hover {
     color: #080808;
-
     background: #ddd;
-
     border-color: #ddd;
 }
 
-/* =====================================================
-   MEMBERS
-===================================================== */
+/* MEMBERS */
 
 .members {
     margin-top: 30px;
@@ -936,20 +640,18 @@ body::after {
     min-height: 76px;
 
     display: grid;
-
     grid-template-columns: 52px 1fr 25px;
 
     align-items: center;
-
     gap: 14px;
 
-    border-top: 1px solid rgba(255,255,255,.05);
+    border-top: 1px solid rgba(255,255,255,.045);
 
-    transition: .25s ease;
+    transition: .25s;
 }
 
 .member:last-child {
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom: 1px solid rgba(255,255,255,.045);
 }
 
 .member:hover {
@@ -966,14 +668,10 @@ body::after {
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #2d2d2d;
-
+    border: 1px solid #2c2c2c;
     border-radius: 50%;
 
-    background: #0c0c0c;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.4);
+    background: #0b0b0b;
 }
 
 .avatar img {
@@ -981,7 +679,6 @@ body::after {
     height: 100%;
 
     object-fit: contain;
-
     border-radius: 50%;
 }
 
@@ -991,8 +688,6 @@ body::after {
     color: #aaa;
 
     font-size: 9px;
-    font-weight: 800;
-
     letter-spacing: 1.5px;
 }
 
@@ -1004,26 +699,19 @@ body::after {
     color: #444;
 
     font-size: 7px;
-    font-weight: 700;
-
     letter-spacing: 2px;
 }
 
 .member > b {
-    color: #3d3d3d;
-
+    color: #3c3c3c;
     font-size: 8px;
-
     text-align: right;
 }
 
-/* =====================================================
-   DISCORD
-===================================================== */
+/* DISCORD */
 
 .discord {
     margin: 75px 6vw;
-
     padding: 65px 6vw;
 
     display: flex;
@@ -1037,40 +725,10 @@ body::after {
 
     border: 1px solid rgba(255,255,255,.055);
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.018),
-            rgba(255,255,255,.004)
-        );
+    background: rgba(255,255,255,.008);
 
     box-shadow:
         0 30px 80px rgba(0,0,0,.45);
-}
-
-.discord::before {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 400px;
-
-    right: -300px;
-    bottom: -300px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(195,150,55,.04),
-            transparent 70%
-        );
-
-    filter: blur(50px);
-
-    pointer-events: none;
 }
 
 .discord h2 {
@@ -1078,11 +736,8 @@ body::after {
 
     color: #ddd;
 
-    font-size: clamp(38px, 5vw, 67px);
-    font-weight: 800;
-
+    font-size: clamp(38px,5vw,67px);
     line-height: .9;
-
     letter-spacing: -4px;
 }
 
@@ -1092,20 +747,14 @@ body::after {
 
 .discord p {
     color: #555;
-
     font-size: 11px;
 }
 
 .primary.big {
     min-width: 185px;
-
-    position: relative;
-    z-index: 2;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 footer {
     min-height: 70px;
@@ -1120,15 +769,12 @@ footer {
 
     font-size: 7px;
     font-weight: 800;
-
     letter-spacing: 2px;
 
     border-top: 1px solid rgba(255,255,255,.05);
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* MOBILE */
 
 @media (max-width: 850px) {
 
@@ -1146,19 +792,16 @@ footer {
 
     .hero {
         grid-template-columns: 1fr;
-
         padding: 70px 7vw;
     }
 
     .hero-mark {
         width: 100%;
-
-        margin-top: 70px;
+        margin-top: 65px;
     }
 
     .split {
         grid-template-columns: 1fr;
-
         margin: 0;
     }
 
@@ -1168,7 +811,6 @@ footer {
 
     .discord {
         margin: 55px 5vw;
-
         flex-direction: column;
         align-items: flex-start;
     }
@@ -1204,23 +846,8 @@ footer {
         width: 100%;
     }
 
-    .hero-mark {
-        margin-top: 60px;
-    }
-
     .panel {
         padding: 50px 7vw;
-    }
-
-    .member {
-        grid-template-columns: 48px 1fr 20px;
-
-        gap: 12px;
-    }
-
-    .avatar {
-        width: 45px;
-        height: 45px;
     }
 
     .discord {
@@ -1233,10 +860,8 @@ footer {
 
     footer {
         padding: 20px 5vw;
-
-        gap: 20px;
-
         flex-direction: column;
         justify-content: center;
+        gap: 15px;
     }
 }
