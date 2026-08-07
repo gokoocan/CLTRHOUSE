@@ -1,21 +1,26 @@
 const audio = document.getElementById("audio");
 
-const playBtn = document.getElementById("playBtn");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
+const playButton = document.getElementById("play");
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
 
 const progress = document.getElementById("progress");
 const volume = document.getElementById("volume");
 
-const currentTime = document.getElementById("currentTime");
-const duration = document.getElementById("duration");
-const volumeText = document.getElementById("volumeText");
+const currentTime = document.getElementById("current");
+const totalTime = document.getElementById("total");
 
-const songTitle = document.getElementById("songTitle");
-const songArtist = document.getElementById("songArtist");
+const volumeNumber =
+    document.getElementById("volumeNumber");
 
-const player = document.querySelector(".player");
-const tracks = document.querySelectorAll(".track");
+const songTitle =
+    document.getElementById("songTitle");
+
+const songArtist =
+    document.getElementById("songArtist");
+
+const songButtons =
+    document.querySelectorAll(".song");
 
 
 /* ================= ŞARKILAR ================= */
@@ -43,26 +48,28 @@ const songs = [
 ];
 
 
-let currentIndex = 0;
+let currentSong = 0;
 
 
-/* ================= ZAMAN ================= */
+/* ================= SÜRE ================= */
 
 function formatTime(seconds) {
 
-    if (!Number.isFinite(seconds)) {
+    if (!isFinite(seconds)) {
+
         return "0:00";
+
     }
 
     const minutes =
         Math.floor(seconds / 60);
 
-    const secs =
+    const secondsLeft =
         Math.floor(seconds % 60)
         .toString()
         .padStart(2, "0");
 
-    return `${minutes}:${secs}`;
+    return minutes + ":" + secondsLeft;
 
 }
 
@@ -71,9 +78,9 @@ function formatTime(seconds) {
 
 function loadSong(index) {
 
-    currentIndex = index;
+    currentSong = index;
 
-    const song = songs[currentIndex];
+    const song = songs[index];
 
     audio.src = song.file;
 
@@ -83,197 +90,159 @@ function loadSong(index) {
     songArtist.textContent =
         song.artist;
 
+
+    songButtons.forEach(button => {
+
+        button.classList.remove("active");
+
+    });
+
+
+    songButtons[index]
+        .classList.add("active");
+
+
     progress.value = 0;
 
     currentTime.textContent =
         "0:00";
 
-    duration.textContent =
+    totalTime.textContent =
         "0:00";
 
-
-    tracks.forEach(track => {
-
-        track.classList.remove("active");
-
-    });
+}
 
 
-    const selectedTrack =
-        document.querySelector(
-            `.track[data-index="${currentIndex}"]`
-        );
+/* ================= OYNAT ================= */
 
+function playSong() {
 
-    if (selectedTrack) {
+    audio.play()
 
-        selectedTrack.classList.add("active");
+        .then(() => {
 
-    }
+            playButton.textContent = "Ⅱ";
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Şarkı oynatılamadı:",
+                error
+            );
+
+        });
 
 }
 
 
-/* ================= PLAY ================= */
+/* ================= DURDUR ================= */
 
-function togglePlay() {
+function pauseSong() {
 
-    if (audio.paused) {
+    audio.pause();
 
-        audio.play()
-            .then(() => {
-
-                player.classList.add("playing");
-
-                playBtn.textContent = "Ⅱ";
-
-            })
-            .catch(error => {
-
-                console.error(
-                    "Şarkı oynatılamadı:",
-                    error
-                );
-
-            });
-
-    } else {
-
-        audio.pause();
-
-        player.classList.remove("playing");
-
-        playBtn.textContent = "▶";
-
-    }
+    playButton.textContent = "▶";
 
 }
+
+
+/* ================= PLAY BUTTON ================= */
+
+playButton.addEventListener(
+    "click",
+    () => {
+
+        if (audio.paused) {
+
+            playSong();
+
+        } else {
+
+            pauseSong();
+
+        }
+
+    }
+);
 
 
 /* ================= NEXT ================= */
 
-function nextSong() {
+nextButton.addEventListener(
+    "click",
+    () => {
 
-    currentIndex++;
+        currentSong++;
 
-    if (currentIndex >= songs.length) {
+        if (
+            currentSong >=
+            songs.length
+        ) {
 
-        currentIndex = 0;
+            currentSong = 0;
+
+        }
+
+        loadSong(currentSong);
+
+        playSong();
 
     }
-
-    loadSong(currentIndex);
-
-    audio.play()
-        .then(() => {
-
-            player.classList.add("playing");
-
-            playBtn.textContent = "Ⅱ";
-
-        })
-        .catch(error => {
-
-            console.error(error);
-
-        });
-
-}
+);
 
 
 /* ================= PREVIOUS ================= */
 
-function previousSong() {
-
-    currentIndex--;
-
-    if (currentIndex < 0) {
-
-        currentIndex =
-            songs.length - 1;
-
-    }
-
-    loadSong(currentIndex);
-
-    audio.play()
-        .then(() => {
-
-            player.classList.add("playing");
-
-            playBtn.textContent = "Ⅱ";
-
-        })
-        .catch(error => {
-
-            console.error(error);
-
-        });
-
-}
-
-
-/* ================= BUTONLAR ================= */
-
-playBtn.addEventListener(
+prevButton.addEventListener(
     "click",
-    togglePlay
-);
+    () => {
 
-nextBtn.addEventListener(
-    "click",
-    nextSong
-);
+        currentSong--;
 
-prevBtn.addEventListener(
-    "click",
-    previousSong
-);
+        if (currentSong < 0) {
 
-
-/* ================= TRACKLER ================= */
-
-tracks.forEach(track => {
-
-    track.addEventListener(
-        "click",
-        () => {
-
-            const index =
-                Number(track.dataset.index);
-
-            loadSong(index);
-
-            audio.play()
-                .then(() => {
-
-                    player.classList.add("playing");
-
-                    playBtn.textContent = "Ⅱ";
-
-                })
-                .catch(error => {
-
-                    console.error(
-                        "Şarkı oynatılamadı:",
-                        error
-                    );
-
-                });
+            currentSong =
+                songs.length - 1;
 
         }
-    );
 
-});
+        loadSong(currentSong);
+
+        playSong();
+
+    }
+);
 
 
-/* ================= METADATA ================= */
+/* ================= ŞARKI LİSTESİ ================= */
+
+songButtons.forEach(
+    (button, index) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                loadSong(index);
+
+                playSong();
+
+            }
+        );
+
+    }
+);
+
+
+/* ================= SÜRE ================= */
 
 audio.addEventListener(
     "loadedmetadata",
     () => {
 
-        duration.textContent =
+        totalTime.textContent =
             formatTime(audio.duration);
 
     }
@@ -287,15 +256,20 @@ audio.addEventListener(
     () => {
 
         if (!audio.duration) {
+
             return;
+
         }
 
-        const percentage =
-            (audio.currentTime /
-            audio.duration) * 100;
+        const percent =
+            (
+                audio.currentTime /
+                audio.duration
+            ) * 100;
 
-        progress.value =
-            percentage;
+
+        progress.value = percent;
+
 
         currentTime.textContent =
             formatTime(
@@ -306,19 +280,22 @@ audio.addEventListener(
 );
 
 
-/* ================= PROGRESS ================= */
+/* ================= PROGRESS BAR ================= */
 
 progress.addEventListener(
     "input",
     () => {
 
         if (!audio.duration) {
+
             return;
+
         }
 
         audio.currentTime =
-            (progress.value / 100) *
-            audio.duration;
+            (
+                progress.value / 100
+            ) * audio.duration;
 
     }
 );
@@ -331,9 +308,10 @@ volume.addEventListener(
     () => {
 
         audio.volume =
-            volume.value;
+            Number(volume.value);
 
-        volumeText.textContent =
+
+        volumeNumber.textContent =
             Math.round(
                 volume.value * 100
             ) + "%";
@@ -348,33 +326,20 @@ audio.addEventListener(
     "ended",
     () => {
 
-        nextSong();
+        currentSong++;
 
-    }
-);
+        if (
+            currentSong >=
+            songs.length
+        ) {
 
+            currentSong = 0;
 
-/* ================= PLAY STATE ================= */
+        }
 
-audio.addEventListener(
-    "play",
-    () => {
+        loadSong(currentSong);
 
-        player.classList.add("playing");
-
-        playBtn.textContent = "Ⅱ";
-
-    }
-);
-
-
-audio.addEventListener(
-    "pause",
-    () => {
-
-        player.classList.remove("playing");
-
-        playBtn.textContent = "▶";
+        playSong();
 
     }
 );
