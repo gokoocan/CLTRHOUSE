@@ -25,10 +25,7 @@
         rel="stylesheet"
     >
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -42,10 +39,7 @@
 
 <header class="header">
 
-    <a
-        href="#"
-        class="brand"
-    >
+    <a href="#" class="brand">
 
         <span>CLTR</span>
 
@@ -71,38 +65,35 @@
         href="https://discord.gg/cltrhouse"
         target="_blank"
         rel="noopener"
-        class="nav-button"
+        class="nav-btn"
     >
-
         SUNUCUYA KATIL
-
     </a>
 
 </header>
 
 
 
-<main>
-
-
 <!-- =====================================================
      HERO
 ===================================================== -->
 
+<main>
+
+
 <section class="hero">
 
 
-    <!-- SOL TARAF -->
+    <div class="hero-copy">
 
-    <div class="hero-left">
 
-        <span class="eyebrow">
+        <div class="eyebrow">
 
             <i></i>
 
             CLTR COMMUNITY
 
-        </span>
+        </div>
 
 
         <h1>
@@ -119,13 +110,14 @@
         </p>
 
 
-        <div class="hero-buttons">
+        <div class="actions">
+
 
             <a
                 href="https://discord.gg/cltrhouse"
                 target="_blank"
                 rel="noopener"
-                class="button primary"
+                class="primary"
             >
 
                 DISCORD'A KATIL
@@ -135,169 +127,266 @@
             </a>
 
 
-            <a href="#bot" class="secondary">
-    BOTU KEŞFET
-    <span>↓</span>
-</a>
         </div>
+
 
     </div>
 
 
 
-    <!-- SAĞ TARAF PLAYER -->
+    <!-- =================================================
+         PLAYER
+    ================================================== -->
 
-    <div class="hero-player">
-
-
-        <div class="hero-player-header">
-
-            <div>
-
-                <span class="player-label">
-                    03 / MUSIC
-                </span>
-
-                <h2>
-                    CLTR <em>PLAYER</em>
-                </h2>
-
-            </div>
+    <div
+        class="hero-player"
+        id="music"
+    >
 
 
-            <span class="track-count">
-                03 TRACKS
+        <div class="music-title">
+
+            <span>
+                03 / MUSIC
             </span>
+
+
+            <h2>
+
+                CLTR
+                <b>PLAYER</b>
+
+            </h2>
+
+
+            <p>
+                CLTR topluluğunun seçtiği parçalar.
+            </p>
 
         </div>
 
 
 
-        <!-- NOW PLAYING -->
-
-        <div class="now-playing">
+        <div class="player">
 
 
-            <div class="disc">
+            <!-- ŞARKI BİLGİSİ -->
 
-                <span>
-                    CLTR
-                </span>
+            <div class="player-song">
+
+
+                <div class="disc">
+
+                    <div class="disc-center">
+                        CLTR
+                    </div>
+
+                </div>
+
+
+                <div class="song-details">
+
+
+                    <small>
+                        NOW PLAYING
+                    </small>
+
+
+                    <h2 id="songTitle">
+                        CLTR TRACK 01
+                    </h2>
+
+
+                    <p id="songArtist">
+                        CLTR COMMUNITY
+                    </p>
+
+
+                </div>
+
 
             </div>
 
 
-            <div class="song-info">
 
-                <small>
-                    NOW PLAYING
-                </small>
+            <!-- KONTROLLER -->
 
-                <strong id="songTitle">
+            <div class="controls">
+
+
+                <button
+                    id="prevBtn"
+                    type="button"
+                    aria-label="Önceki şarkı"
+                >
+                    ‹
+                </button>
+
+
+                <button
+                    id="playBtn"
+                    class="play"
+                    type="button"
+                    aria-label="Oynat"
+                >
+                    ▶
+                </button>
+
+
+                <button
+                    id="nextBtn"
+                    type="button"
+                    aria-label="Sonraki şarkı"
+                >
+                    ›
+                </button>
+
+
+            </div>
+
+
+
+            <!-- SÜRE -->
+
+            <div class="progress-container">
+
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+
+                <span id="duration">
+                    0:00
+                </span>
+
+
+            </div>
+
+
+
+            <!-- SES -->
+
+            <div class="volume">
+
+
+                <span>
+                    VOL
+                </span>
+
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.8"
+                >
+
+
+                <span id="volumeText">
+                    80%
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ŞARKI LİSTESİ
+        ================================================== -->
+
+        <div class="songs">
+
+
+            <button
+                class="song active"
+                data-index="0"
+                type="button"
+            >
+
+                <span>
+                    01
+                </span>
+
+                <strong>
                     CLTR TRACK 01
                 </strong>
 
-                <span id="songArtist">
-                    CLTR COMMUNITY
+                <small>
+                    PLAY
+                </small>
+
+            </button>
+
+
+
+            <button
+                class="song"
+                data-index="1"
+                type="button"
+            >
+
+                <span>
+                    02
                 </span>
 
-            </div>
+                <strong>
+                    CLTR TRACK 02
+                </strong>
 
+                <small>
+                    PLAY
+                </small>
 
-        </div>
-
-
-
-        <!-- KONTROLLER -->
-
-        <div class="controls">
-
-
-            <button
-                type="button"
-                id="prevBtn"
-                aria-label="Önceki şarkı"
-            >
-                ‹
             </button>
 
 
-            <button
-                type="button"
-                id="playBtn"
-                class="play-button"
-                aria-label="Oynat"
-            >
-                ▶
-            </button>
-
 
             <button
+                class="song"
+                data-index="2"
                 type="button"
-                id="nextBtn"
-                aria-label="Sonraki şarkı"
             >
-                ›
+
+                <span>
+                    03
+                </span>
+
+                <strong>
+                    CLTR TRACK 03
+                </strong>
+
+                <small>
+                    PLAY
+                </small>
+
             </button>
 
 
         </div>
 
 
+        <!-- GERÇEK AUDIO -->
 
-        <!-- SÜRE -->
-
-        <div class="timeline">
-
-            <span id="currentTime">
-                0:00
-            </span>
-
-
-            <input
-                type="range"
-                id="progress"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="Şarkı ilerlemesi"
-            >
-
-
-            <span id="duration">
-                0:00
-            </span>
-
-        </div>
-
-
-
-        <!-- SES -->
-
-        <div class="volume-row">
-
-            <span>
-                VOL
-            </span>
-
-
-            <input
-                type="range"
-                id="volume"
-                min="0"
-                max="1"
-                value="0.8"
-                step="0.01"
-                aria-label="Ses"
-            >
-
-
-            <span id="volumeText">
-                80%
-            </span>
-
-        </div>
+        <audio
+            id="audio"
+            preload="metadata"
+        ></audio>
 
 
     </div>
@@ -320,16 +409,15 @@
     <div class="section-box">
 
 
-        <div class="section-top">
+        <div class="panel-head">
 
             <span class="tag">
                 01 / BOT
             </span>
 
+            <span class="status">
 
-            <span class="online">
-
-                <i></i>
+                <b></b>
 
                 ONLINE
 
@@ -338,7 +426,7 @@
         </div>
 
 
-        <h2 class="section-title">
+        <h2>
 
             CLTR
             <em>BOT</em>
@@ -346,13 +434,12 @@
         </h2>
 
 
-        <p class="section-description">
+        <p class="muted">
 
             Sunucunu düzenli, hızlı ve profesyonel tutmak
             için tasarlanmış CLTR yardımcı botu.
 
         </p>
-
 
 
         <div class="features">
@@ -437,12 +524,11 @@
         </div>
 
 
-
         <a
             href="https://discord.gg/cltrhouse"
             target="_blank"
             rel="noopener"
-            class="wide-button"
+            class="wide-btn"
         >
 
             DISCORD SUNUCUSUNA GİT
@@ -453,6 +539,7 @@
 
 
     </div>
+
 
 </section>
 
@@ -471,25 +558,25 @@
     <div class="section-box">
 
 
-        <div class="section-top">
+        <div class="panel-head">
 
             <span class="tag">
                 02 / TEAM
             </span>
 
-            <span class="member-count">
+            <span class="count">
                 CLTR MEMBERS
             </span>
 
         </div>
 
 
-        <h2 class="section-title">
+        <h2>
             EKİBİMİZ
         </h2>
 
 
-        <p class="section-description">
+        <p class="muted">
             CLTR'nin arkasındaki ekip.
         </p>
 
@@ -498,9 +585,8 @@
         <div class="members">
 
 
-            <!-- GOKO -->
-
             <article class="member">
+
 
                 <div class="avatar">
 
@@ -529,13 +615,13 @@
                     01
                 </b>
 
+
             </article>
 
 
 
-            <!-- PALES -->
-
             <article class="member">
+
 
                 <div class="avatar">
 
@@ -564,13 +650,13 @@
                     02
                 </b>
 
+
             </article>
 
 
 
-            <!-- CYA -->
-
             <article class="member">
+
 
                 <div class="avatar">
 
@@ -599,13 +685,13 @@
                     03
                 </b>
 
+
             </article>
 
 
 
-            <!-- TATARX2 -->
-
             <article class="member">
+
 
                 <div class="avatar">
 
@@ -634,6 +720,7 @@
                     04
                 </b>
 
+
             </article>
 
 
@@ -642,11 +729,8 @@
 
     </div>
 
+
 </section>
-
-
-
-
 
 
 
@@ -660,50 +744,44 @@
 >
 
 
-    <div class="discord-box">
+    <div>
+
+        <span class="tag">
+            04 / DISCORD
+        </span>
 
 
-        <div>
+        <h2>
 
-            <span class="tag">
-                04 / DISCORD
-            </span>
+            CLTR'YE
+            <span>KATIL.</span>
 
-
-            <h2>
-
-                CLTR'YE
-                <span>KATIL.</span>
-
-            </h2>
+        </h2>
 
 
-            <p>
+        <p>
 
-                Ekibin bir parçası ol,
-                duyuruları takip et ve topluluğa katıl.
+            Ekibin bir parçası ol,
+            duyuruları takip et ve topluluğa katıl.
 
-            </p>
-
-        </div>
-
-
-
-        <a
-            href="https://discord.gg/cltrhouse"
-            target="_blank"
-            rel="noopener"
-            class="button primary big"
-        >
-
-            DISCORD'A KATIL
-
-            <span>↗</span>
-
-        </a>
-
+        </p>
 
     </div>
+
+
+    <a
+        href="https://discord.gg/cltrhouse"
+        target="_blank"
+        rel="noopener"
+        class="primary big"
+    >
+
+        DISCORD'A KATIL
+
+        <span>↗</span>
+
+    </a>
+
 
 </section>
 
@@ -722,7 +800,6 @@
         © 2026 CLTR TEAM
     </span>
 
-
     <span>
         BUILT FOR THE COMMUNITY
     </span>
@@ -732,17 +809,396 @@
 
 
 <!-- =====================================================
-     AUDIO
+     PLAYER SCRIPT
 ===================================================== -->
 
-<audio
-    id="audio"
-    preload="metadata"
-></audio>
+<script>
+
+const audio = document.getElementById("audio");
+
+const playBtn = document.getElementById("playBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const progress = document.getElementById("progress");
+
+const volume = document.getElementById("volume");
+const volumeText = document.getElementById("volumeText");
+
+const currentTime = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+
+const songTitle = document.getElementById("songTitle");
+const songArtist = document.getElementById("songArtist");
+
+const songs = document.querySelectorAll(".songs .song");
 
 
+/* =====================================================
+   ŞARKILAR
 
-<script src="script.js"></script>
+   DOSYALARIN GITHUB'DA ŞÖYLE OLMALI:
+
+   music/
+      track01.mp3
+      track02.mp3
+      track03.mp3
+===================================================== */
+
+const tracks = [
+
+    {
+        title: "CLTR TRACK 01",
+        artist: "CLTR COMMUNITY",
+        src: "./music/track01.mp3"
+    },
+
+    {
+        title: "CLTR TRACK 02",
+        artist: "CLTR COMMUNITY",
+        src: "./music/track02.mp3"
+    },
+
+    {
+        title: "CLTR TRACK 03",
+        artist: "CLTR COMMUNITY",
+        src: "./music/track03.mp3"
+    }
+
+];
+
+
+let currentTrack = 0;
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function formatTime(time) {
+
+    if (!Number.isFinite(time)) {
+        return "0:00";
+    }
+
+    const minutes = Math.floor(time / 60);
+
+    const seconds = Math.floor(time % 60);
+
+    return minutes + ":" + String(seconds).padStart(2, "0");
+
+}
+
+
+/* =====================================================
+   TRACK YÜKLE
+===================================================== */
+
+function loadTrack(index) {
+
+    currentTrack = index;
+
+    const track = tracks[currentTrack];
+
+    songTitle.textContent = track.title;
+
+    songArtist.textContent = track.artist;
+
+    audio.src = track.src;
+
+    audio.load();
+
+
+    songs.forEach((song, i) => {
+
+        song.classList.toggle(
+            "active",
+            i === currentTrack
+        );
+
+    });
+
+
+    progress.value = 0;
+
+    currentTime.textContent = "0:00";
+
+    duration.textContent = "0:00";
+
+}
+
+
+/* =====================================================
+   PLAY
+===================================================== */
+
+function playTrack() {
+
+    audio.play()
+        .then(() => {
+
+            playBtn.textContent = "Ⅱ";
+
+        })
+        .catch((error) => {
+
+            console.error(
+                "CLTR PLAYER HATA:",
+                error
+            );
+
+            console.error(
+                "ÇALINMAYA ÇALIŞILAN DOSYA:",
+                audio.src
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   PAUSE
+===================================================== */
+
+function pauseTrack() {
+
+    audio.pause();
+
+    playBtn.textContent = "▶";
+
+}
+
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+playBtn.addEventListener(
+    "click",
+    () => {
+
+        if (audio.paused) {
+
+            playTrack();
+
+        } else {
+
+            pauseTrack();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentTrack++;
+
+        if (currentTrack >= tracks.length) {
+
+            currentTrack = 0;
+
+        }
+
+        loadTrack(currentTrack);
+
+        playTrack();
+
+    }
+);
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+prevBtn.addEventListener(
+    "click",
+    () => {
+
+        currentTrack--;
+
+        if (currentTrack < 0) {
+
+            currentTrack = tracks.length - 1;
+
+        }
+
+        loadTrack(currentTrack);
+
+        playTrack();
+
+    }
+);
+
+
+/* =====================================================
+   TRACK LIST
+===================================================== */
+
+songs.forEach(
+    (song) => {
+
+        song.addEventListener(
+            "click",
+            () => {
+
+                const index =
+                    Number(song.dataset.index);
+
+                loadTrack(index);
+
+                playTrack();
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   METADATA
+===================================================== */
+
+audio.addEventListener(
+    "loadedmetadata",
+    () => {
+
+        duration.textContent =
+            formatTime(audio.duration);
+
+    }
+);
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+audio.addEventListener(
+    "timeupdate",
+    () => {
+
+        if (!audio.duration) {
+            return;
+        }
+
+        progress.value =
+            (audio.currentTime / audio.duration) * 100;
+
+        currentTime.textContent =
+            formatTime(audio.currentTime);
+
+    }
+);
+
+
+progress.addEventListener(
+    "input",
+    () => {
+
+        if (!audio.duration) {
+            return;
+        }
+
+        audio.currentTime =
+            (progress.value / 100) *
+            audio.duration;
+
+    }
+);
+
+
+/* =====================================================
+   VOLUME
+===================================================== */
+
+audio.volume = 0.8;
+
+
+volume.addEventListener(
+    "input",
+    () => {
+
+        audio.volume =
+            Number(volume.value);
+
+        volumeText.textContent =
+            Math.round(audio.volume * 100) + "%";
+
+    }
+);
+
+
+/* =====================================================
+   ŞARKI BİTİNCE SONRAKİ
+===================================================== */
+
+audio.addEventListener(
+    "ended",
+    () => {
+
+        currentTrack++;
+
+        if (currentTrack >= tracks.length) {
+
+            currentTrack = 0;
+
+        }
+
+        loadTrack(currentTrack);
+
+        playTrack();
+
+    }
+);
+
+
+/* =====================================================
+   DOSYA HATASI
+===================================================== */
+
+audio.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "================================"
+        );
+
+        console.error(
+            "CLTR PLAYER: SES DOSYASI YÜKLENEMEDİ"
+        );
+
+        console.error(
+            "DOSYA:",
+            audio.src
+        );
+
+        console.error(
+            "================================"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   İLK ŞARKI
+===================================================== */
+
+loadTrack(0);
+
+</script>
 
 
 </body>
