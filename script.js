@@ -1,17 +1,66 @@
-const audio = document.getElementById("audio");
+/* =====================================================
+   CLTR PLAYER
+===================================================== */
 
-const playButton = document.getElementById("play");
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("prev");
 
-const progress = document.getElementById("progress");
-const volume = document.getElementById("volume");
+/* =====================================================
+   ŞARKILAR
+===================================================== */
 
-const currentTime = document.getElementById("current");
-const totalTime = document.getElementById("total");
+const tracks = [
 
-const volumeNumber =
-    document.getElementById("volumeNumber");
+    {
+        title: "CLTR TRACK 01",
+        artist: "CLTR COMMUNITY",
+        src: "music/track01.mp3"
+    },
+
+    {
+        title: "CLTR TRACK 02",
+        artist: "CLTR COMMUNITY",
+        src: "music/track02.mp3"
+    },
+
+    {
+        title: "CLTR TRACK 03",
+        artist: "CLTR COMMUNITY",
+        src: "music/track03.mp3"
+    }
+
+];
+
+
+
+/* =====================================================
+   ELEMENTLER
+===================================================== */
+
+const audio =
+    document.getElementById("audio");
+
+const playBtn =
+    document.getElementById("playBtn");
+
+const prevBtn =
+    document.getElementById("prevBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const progress =
+    document.getElementById("progress");
+
+const volume =
+    document.getElementById("volume");
+
+const currentTime =
+    document.getElementById("currentTime");
+
+const duration =
+    document.getElementById("duration");
+
+const volumeText =
+    document.getElementById("volumeText");
 
 const songTitle =
     document.getElementById("songTitle");
@@ -19,112 +68,83 @@ const songTitle =
 const songArtist =
     document.getElementById("songArtist");
 
-const songButtons =
-    document.querySelectorAll(".song");
+const trackButtons =
+    document.querySelectorAll(".track");
 
 
-/* ================= ŞARKILAR ================= */
 
-const songs = [
+/* =====================================================
+   DEĞİŞKENLER
+===================================================== */
 
-    {
-        title: "CLTR TRACK 01",
-        artist: "CLTR COMMUNITY",
-        file: "music/track1.mp3"
-    },
-
-    {
-        title: "CLTR TRACK 02",
-        artist: "CLTR COMMUNITY",
-        file: "music/track2.mp3"
-    },
-
-    {
-        title: "CLTR TRACK 03",
-        artist: "CLTR COMMUNITY",
-        file: "music/track3.mp3"
-    }
-
-];
+let currentTrack = 0;
 
 
-let currentSong = 0;
+
+/* =====================================================
+   ŞARKI YÜKLE
+===================================================== */
+
+function loadTrack(index) {
+
+    currentTrack = index;
+
+    const track =
+        tracks[currentTrack];
 
 
-/* ================= SÜRE ================= */
+    audio.src =
+        track.src;
 
-function formatTime(seconds) {
-
-    if (!isFinite(seconds)) {
-
-        return "0:00";
-
-    }
-
-    const minutes =
-        Math.floor(seconds / 60);
-
-    const secondsLeft =
-        Math.floor(seconds % 60)
-        .toString()
-        .padStart(2, "0");
-
-    return minutes + ":" + secondsLeft;
-
-}
-
-
-/* ================= ŞARKI YÜKLE ================= */
-
-function loadSong(index) {
-
-    currentSong = index;
-
-    const song = songs[index];
-
-    audio.src = song.file;
 
     songTitle.textContent =
-        song.title;
+        track.title;
+
 
     songArtist.textContent =
-        song.artist;
+        track.artist;
 
-
-    songButtons.forEach(button => {
-
-        button.classList.remove("active");
-
-    });
-
-
-    songButtons[index]
-        .classList.add("active");
-
-
-    progress.value = 0;
 
     currentTime.textContent =
         "0:00";
 
-    totalTime.textContent =
+
+    duration.textContent =
         "0:00";
+
+
+    progress.value =
+        0;
+
+
+    trackButtons.forEach(
+        (button, buttonIndex) => {
+
+            button.classList.toggle(
+                "active",
+                buttonIndex === currentTrack
+            );
+
+        }
+    );
 
 }
 
 
-/* ================= OYNAT ================= */
 
-function playSong() {
+/* =====================================================
+   PLAY
+===================================================== */
+
+function playTrack() {
 
     audio.play()
-
         .then(() => {
 
-            playButton.textContent = "Ⅱ";
+            playBtn.textContent =
+                "Ⅱ";
 
         })
-
         .catch(error => {
 
             console.error(
@@ -137,138 +157,212 @@ function playSong() {
 }
 
 
-/* ================= DURDUR ================= */
 
-function pauseSong() {
+/* =====================================================
+   PAUSE
+===================================================== */
+
+function pauseTrack() {
 
     audio.pause();
 
-    playButton.textContent = "▶";
+    playBtn.textContent =
+        "▶";
 
 }
 
 
-/* ================= PLAY BUTTON ================= */
 
-playButton.addEventListener(
-    "click",
-    () => {
+/* =====================================================
+   PLAY / PAUSE
+===================================================== */
 
-        if (audio.paused) {
+function togglePlay() {
 
-            playSong();
+    if (audio.paused) {
 
-        } else {
+        playTrack();
 
-            pauseSong();
+    } else {
 
-        }
-
-    }
-);
-
-
-/* ================= NEXT ================= */
-
-nextButton.addEventListener(
-    "click",
-    () => {
-
-        currentSong++;
-
-        if (
-            currentSong >=
-            songs.length
-        ) {
-
-            currentSong = 0;
-
-        }
-
-        loadSong(currentSong);
-
-        playSong();
+        pauseTrack();
 
     }
-);
+
+}
 
 
-/* ================= PREVIOUS ================= */
 
-prevButton.addEventListener(
-    "click",
-    () => {
+/* =====================================================
+   SONRAKİ
+===================================================== */
 
-        currentSong--;
+function nextTrack() {
 
-        if (currentSong < 0) {
+    currentTrack++;
 
-            currentSong =
-                songs.length - 1;
+    if (
+        currentTrack >=
+        tracks.length
+    ) {
 
-        }
-
-        loadSong(currentSong);
-
-        playSong();
+        currentTrack = 0;
 
     }
-);
 
 
-/* ================= ŞARKI LİSTESİ ================= */
+    loadTrack(
+        currentTrack
+    );
 
-songButtons.forEach(
-    (button, index) => {
 
-        button.addEventListener(
-            "click",
-            () => {
+    playTrack();
 
-                loadSong(index);
+}
 
-                playSong();
 
-            }
+
+/* =====================================================
+   ÖNCEKİ
+===================================================== */
+
+function previousTrack() {
+
+    currentTrack--;
+
+    if (
+        currentTrack < 0
+    ) {
+
+        currentTrack =
+            tracks.length - 1;
+
+    }
+
+
+    loadTrack(
+        currentTrack
+    );
+
+
+    playTrack();
+
+}
+
+
+
+/* =====================================================
+   ZAMAN FORMAT
+===================================================== */
+
+function formatTime(seconds) {
+
+    if (
+        !Number.isFinite(seconds)
+    ) {
+
+        return "0:00";
+
+    }
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
         );
 
-    }
+
+    const secs =
+        Math.floor(
+            seconds % 60
+        )
+        .toString()
+        .padStart(2, "0");
+
+
+    return `${minutes}:${secs}`;
+
+}
+
+
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+playBtn.addEventListener(
+    "click",
+    togglePlay
 );
 
 
-/* ================= SÜRE ================= */
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    nextTrack
+);
+
+
+
+/* =====================================================
+   PREVIOUS BUTTON
+===================================================== */
+
+prevBtn.addEventListener(
+    "click",
+    previousTrack
+);
+
+
+
+/* =====================================================
+   METADATA
+===================================================== */
 
 audio.addEventListener(
     "loadedmetadata",
     () => {
 
-        totalTime.textContent =
-            formatTime(audio.duration);
+        duration.textContent =
+            formatTime(
+                audio.duration
+            );
 
     }
 );
 
 
-/* ================= İLERLEME ================= */
+
+/* =====================================================
+   ZAMAN İLERLEMESİ
+===================================================== */
 
 audio.addEventListener(
     "timeupdate",
     () => {
 
-        if (!audio.duration) {
+        if (
+            !audio.duration
+        ) {
 
             return;
 
         }
 
-        const percent =
+
+        const percentage =
             (
                 audio.currentTime /
                 audio.duration
             ) * 100;
 
 
-        progress.value = percent;
+        progress.value =
+            percentage;
 
 
         currentTime.textContent =
@@ -280,38 +374,54 @@ audio.addEventListener(
 );
 
 
-/* ================= PROGRESS BAR ================= */
+
+/* =====================================================
+   PROGRESS DEĞİŞTİR
+===================================================== */
 
 progress.addEventListener(
     "input",
     () => {
 
-        if (!audio.duration) {
+        if (
+            !audio.duration
+        ) {
 
             return;
 
         }
 
+
         audio.currentTime =
             (
                 progress.value / 100
-            ) * audio.duration;
+            ) *
+            audio.duration;
 
     }
 );
 
 
-/* ================= SES ================= */
+
+/* =====================================================
+   SES
+===================================================== */
+
+audio.volume =
+    0.8;
+
 
 volume.addEventListener(
     "input",
     () => {
 
         audio.volume =
-            Number(volume.value);
+            Number(
+                volume.value
+            );
 
 
-        volumeNumber.textContent =
+        volumeText.textContent =
             Math.round(
                 volume.value * 100
             ) + "%";
@@ -320,33 +430,80 @@ volume.addEventListener(
 );
 
 
-/* ================= ŞARKI BİTİNCE ================= */
 
-audio.addEventListener(
-    "ended",
-    () => {
+/* =====================================================
+   TRACK LIST
+===================================================== */
 
-        currentSong++;
+trackButtons.forEach(
+    button => {
 
-        if (
-            currentSong >=
-            songs.length
-        ) {
+        button.addEventListener(
+            "click",
+            () => {
 
-            currentSong = 0;
+                const index =
+                    Number(
+                        button.dataset.index
+                    );
 
-        }
 
-        loadSong(currentSong);
+                loadTrack(index);
 
-        playSong();
+                playTrack();
+
+            }
+        );
 
     }
 );
 
 
-/* ================= BAŞLANGIÇ ================= */
 
-audio.volume = 0.8;
+/* =====================================================
+   ŞARKI BİTİNCE
+===================================================== */
 
-loadSong(0);
+audio.addEventListener(
+    "ended",
+    () => {
+
+        nextTrack();
+
+    }
+);
+
+
+
+/* =====================================================
+   PLAY / PAUSE DURUMU
+===================================================== */
+
+audio.addEventListener(
+    "play",
+    () => {
+
+        playBtn.textContent =
+            "Ⅱ";
+
+    }
+);
+
+
+audio.addEventListener(
+    "pause",
+    () => {
+
+        playBtn.textContent =
+            "▶";
+
+    }
+);
+
+
+
+/* =====================================================
+   İLK ŞARKI
+===================================================== */
+
+loadTrack(0);
