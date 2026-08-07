@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -13,28 +17,46 @@ html {
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    background: #050505;
-    color: #e8e8e8;
-    font-family: Inter, Arial, sans-serif;
+
+    background: #040404;
+    color: #e7e7e7;
+
+    font-family: 'Inter', Arial, sans-serif;
+
+    animation: pageIn 1s ease both;
 }
 
-/* Venny tarzı loş arka plan */
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
 body::before {
     content: "";
     position: fixed;
     inset: 0;
+
     z-index: -2;
     pointer-events: none;
 
     background:
         radial-gradient(
-            600px 500px at 0% 0%,
-            rgba(255,255,255,.025),
-            transparent 70%
+            650px 500px at -5% -5%,
+            rgba(255,255,255,.018),
+            transparent 72%
         ),
         radial-gradient(
-            650px 550px at 100% 100%,
-            rgba(180,140,60,.035),
+            650px 500px at 105% -5%,
+            rgba(255,255,255,.012),
+            transparent 72%
+        ),
+        radial-gradient(
+            700px 550px at -5% 105%,
+            rgba(160,160,160,.012),
+            transparent 72%
+        ),
+        radial-gradient(
+            750px 600px at 105% 105%,
+            rgba(190,150,70,.025),
             transparent 72%
         );
 }
@@ -43,24 +65,45 @@ body::after {
     content: "";
     position: fixed;
     inset: 0;
+
     z-index: -1;
     pointer-events: none;
 
-    background: radial-gradient(
-        ellipse at center,
-        transparent 35%,
-        rgba(0,0,0,.5) 100%
-    );
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 30%,
+            rgba(0,0,0,.45) 100%
+        );
 }
 
+/* Eski karıncalanmayı kapat */
 .noise {
     display: none !important;
 }
 
-/* NAVBAR */
+/* =====================================================
+   PAGE INTRO
+===================================================== */
+
+@keyframes pageIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 .nav {
+    width: 100%;
     height: 78px;
+
     padding: 0 6vw;
 
     display: flex;
@@ -70,11 +113,12 @@ body::after {
     top: 0;
     z-index: 100;
 
-    background: rgba(5,5,5,.78);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: rgba(4,4,4,.78);
 
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border-bottom: 1px solid rgba(255,255,255,.055);
 }
 
 .brand {
@@ -82,7 +126,7 @@ body::after {
     align-items: center;
     gap: 9px;
 
-    color: #eee;
+    color: #ddd;
     text-decoration: none;
 
     font-size: 20px;
@@ -90,63 +134,81 @@ body::after {
     letter-spacing: -1px;
 }
 
+.brand span {
+    color: #c0c0c0;
+}
+
 .brand small {
-    color: #555;
+    margin-top: 10px;
+
+    color: #4d4d4d;
+
     font-size: 7px;
+    font-weight: 800;
     letter-spacing: 3px;
 }
 
 .nav nav {
     display: flex;
-    gap: 34px;
+    align-items: center;
+
+    gap: 32px;
+
     margin-left: auto;
     margin-right: 32px;
 }
 
 .nav nav a {
-    color: #666;
+    color: #5c5c5c;
+
     text-decoration: none;
 
     font-size: 8px;
     font-weight: 800;
     letter-spacing: 2px;
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .nav nav a:hover {
-    color: #eee;
+    color: #e5e5e5;
 }
 
 .nav-btn {
     padding: 11px 16px;
 
-    color: #999;
+    color: #858585;
+
     text-decoration: none;
 
     font-size: 8px;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
 
-    border: 1px solid #303030;
+    border: 1px solid #2b2b2b;
+
     background: transparent;
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .nav-btn:hover {
-    color: #fff;
-    border-color: #666;
+    color: #eee;
+    border-color: #646464;
 }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero {
-    min-height: 700px;
+    min-height: 690px;
+
     padding: 90px 8vw;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     align-items: center;
 
     position: relative;
@@ -154,13 +216,54 @@ body::after {
     border-bottom: 1px solid rgba(255,255,255,.055);
 }
 
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 7%;
+    right: 7%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(190,190,190,.08),
+            transparent
+        );
+}
+
+/* =====================================================
+   HERO LEFT
+===================================================== */
+
 .hero-copy {
     position: relative;
     z-index: 2;
+
+    animation:
+        heroTextIn 1.15s cubic-bezier(.16,1,.3,1) .1s both;
+}
+
+@keyframes heroTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 .eyebrow {
-    color: #666;
+    color: #626262;
 
     font-size: 8px;
     font-weight: 800;
@@ -168,74 +271,178 @@ body::after {
 }
 
 .eyebrow i {
-    display: inline-block;
-
     width: 5px;
     height: 5px;
-    margin-right: 8px;
+
+    margin-right: 9px;
+
+    display: inline-block;
 
     border-radius: 50%;
-    background: #ccc;
 
-    box-shadow: 0 0 8px rgba(255,255,255,.35);
+    background: #cfcfcf;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.25);
 }
 
-/* KROM CLTR */
+/* =====================================================
+   CLTR METALLIC
+===================================================== */
 
 .hero h1 {
     margin: 30px 0;
 
+    position: relative;
+
     font-size: clamp(95px, 14vw, 190px);
     line-height: .72;
-    letter-spacing: -.1em;
 
+    letter-spacing: -.095em;
+
+    /* SABİT METALİK */
     background:
         linear-gradient(
             180deg,
-            #fff 0%,
-            #cfcfcf 14%,
-            #555 29%,
-            #191919 40%,
-            #eee 49%,
-            #777 63%,
-            #222 76%,
-            #ddd 88%,
-            #fff 100%
+
+            #eeeeee 0%,
+            #c9c9c9 14%,
+            #8c8c8c 29%,
+            #5d5d5d 43%,
+            #bdbdbd 53%,
+            #747474 68%,
+            #9e9e9e 80%,
+            #d7d7d7 91%,
+            #eeeeee 100%
         );
 
     -webkit-background-clip: text;
     background-clip: text;
+
+    -webkit-text-fill-color: transparent;
     color: transparent;
 
     filter:
-        drop-shadow(0 3px 4px rgba(0,0,0,.9))
-        drop-shadow(0 0 25px rgba(255,255,255,.025));
+        drop-shadow(0 4px 4px rgba(0,0,0,.9));
+
+    animation:
+        cltrReveal 1.35s cubic-bezier(.16,1,.3,1) .25s both;
+}
+
+@keyframes cltrReveal {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(28px)
+            scale(.96);
+
+        filter:
+            blur(14px)
+            drop-shadow(0 4px 4px rgba(0,0,0,.9));
+    }
+
+    65% {
+        opacity: 1;
+
+        filter:
+            blur(0)
+            drop-shadow(0 4px 4px rgba(0,0,0,.9));
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0)
+            drop-shadow(0 4px 4px rgba(0,0,0,.9));
+    }
+}
+
+/* CLTR üzerinde tek seferlik metalik ışık */
+
+.hero h1::after {
+    content: "";
+
+    position: absolute;
+
+    top: -15%;
+    left: -35%;
+
+    width: 16%;
+    height: 130%;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.5),
+            transparent
+        );
+
+    transform: skewX(-18deg);
+
+    animation:
+        metalShine 1.25s ease 1.35s forwards;
+}
+
+@keyframes metalShine {
+    0% {
+        left: -35%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .65;
+    }
+
+    45% {
+        opacity: .25;
+    }
+
+    100% {
+        left: 120%;
+        opacity: 0;
+    }
 }
 
 .hero-copy > p {
     max-width: 470px;
 
-    color: #626262;
+    color: #5d5d5d;
 
     font-size: 12px;
     line-height: 1.8;
 }
 
-/* BUTTONS */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .actions {
     display: flex;
     gap: 10px;
+
     margin-top: 30px;
 }
 
 .primary,
 .secondary {
     min-height: 44px;
+
     padding: 0 18px;
 
     display: inline-flex;
     align-items: center;
+
     gap: 25px;
 
     text-decoration: none;
@@ -244,109 +451,152 @@ body::after {
     font-weight: 800;
     letter-spacing: 1.7px;
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .primary {
     color: #080808;
-    background: #e7e7e7;
-    border: 1px solid #e7e7e7;
+
+    background: #e3e3e3;
+
+    border: 1px solid #e3e3e3;
 }
 
 .primary:hover {
     background: #fff;
+
     transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px rgba(255,255,255,.08);
 }
 
 .secondary {
-    color: #777;
+    color: #707070;
+
     background: transparent;
-    border: 1px solid #303030;
+
+    border: 1px solid #2b2b2b;
 }
 
 .secondary:hover {
     color: #eee;
+
     border-color: #666;
 }
 
-/* PLAYER */
+/* =====================================================
+   SPOTIFY
+===================================================== */
 
-.hero-mark {
-    width: min(100%, 520px);
+.spotify-box {
+    width: 100%;
+    max-width: 520px;
+
     margin-left: auto;
 
     position: relative;
     z-index: 2;
+
+    animation:
+        playerIn 1.2s cubic-bezier(.16,1,.3,1) .25s both;
 }
 
-.hero-mark::before {
+@keyframes playerIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.spotify-box::before {
     content: "";
 
     position: absolute;
-    inset: -120px;
+
+    inset: -110px;
 
     z-index: -1;
 
     background:
         radial-gradient(
             ellipse,
-            rgba(190,145,55,.035),
+            rgba(190,145,55,.025),
             transparent 70%
         );
 
     filter: blur(55px);
+
+    pointer-events: none;
 }
 
-.music-heading {
-    margin-bottom: 15px;
+.spotify-title {
+    display: flex !important;
+    align-items: center;
 
-    color: #666;
+    gap: 9px;
 
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 3px;
+    margin-bottom: 16px !important;
+
+    color: #666 !important;
+
+    font-size: 8px !important;
+    font-weight: 800 !important;
+    letter-spacing: 3px !important;
 }
 
-.music-heading i {
+.spotify-title i {
+    width: 5px !important;
+    height: 5px !important;
+
     display: inline-block;
 
-    width: 5px;
-    height: 5px;
-    margin-right: 8px;
-
     border-radius: 50%;
-    background: #ccc;
+
+    background: #cfcfcf !important;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.25) !important;
 }
 
-/* PLAYER CARD */
+/* =====================================================
+   SPOTIFY CARD
+===================================================== */
 
-.music-player {
-    padding: 10px;
+.spotify-card {
+    padding: 12px !important;
+
+    position: relative;
 
     background:
         linear-gradient(
             145deg,
-            rgba(22,22,22,.96),
-            rgba(7,7,7,.98)
-        );
+            #171717,
+            #080808
+        ) !important;
 
-    border: 1px solid rgba(255,255,255,.065);
+    border: 1px solid #292929 !important;
 
     box-shadow:
-        0 35px 90px rgba(0,0,0,.7),
-        inset 0 1px 0 rgba(255,255,255,.035);
-
-    position: relative;
+        0 30px 80px rgba(0,0,0,.65),
+        inset 0 1px 0 rgba(255,255,255,.025) !important;
 }
 
-.music-player::before {
+.spotify-card::before {
     content: "";
 
     position: absolute;
 
     top: 0;
-    left: 18%;
-    right: 18%;
+    left: 17%;
+    right: 17%;
 
     height: 1px;
 
@@ -354,136 +604,57 @@ body::after {
         linear-gradient(
             90deg,
             transparent,
-            rgba(210,165,70,.16),
+            rgba(210,210,210,.12),
             transparent
         );
 }
 
-.music-player iframe {
+.spotify-track {
+    margin-bottom: 12px !important;
+}
+
+.spotify-track:last-child {
+    margin-bottom: 0 !important;
+}
+
+.spotify-track iframe {
     display: block;
 
     width: 100%;
-    height: 152px;
 
-    border: 0;
-    border-radius: 11px;
+    border: 0 !important;
+
+    border-radius: 12px !important;
 }
 
-/* TRACKS */
-
-.track-list {
-    margin-top: 18px;
-    border-top: 1px solid rgba(255,255,255,.05);
-}
-
-.track-title {
-    padding: 14px 2px 11px;
-
-    color: #414141;
-
-    font-size: 7px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-}
-
-.track {
-    width: 100%;
-    min-height: 60px;
-
-    padding: 0 12px;
-
-    display: grid;
-    grid-template-columns: 35px 1fr 20px;
-    align-items: center;
-
-    text-align: left;
-
-    color: #777;
-
-    background: transparent;
-    border: 0;
-    border-top: 1px solid rgba(255,255,255,.04);
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.track:hover {
-    background: rgba(255,255,255,.018);
-    color: #ccc;
-}
-
-.track.active {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(190,145,50,.035),
-            transparent
-        );
-}
-
-.track-number {
-    color: #414141;
-    font-size: 8px;
-}
-
-.track.active .track-number {
-    color: #9b7941;
-}
-
-.track-name {
-    color: #999;
-
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.track.active .track-name {
-    color: #ddd;
-}
-
-.track-sub {
-    margin-top: 5px;
-
-    color: #444;
-
-    font-size: 7px;
-    letter-spacing: 2px;
-}
-
-.track-arrow {
-    color: #444;
-    text-align: right;
-}
-
-.music-footer {
-    display: flex;
+.spotify-footer {
+    display: flex !important;
     justify-content: space-between;
 
-    margin-top: 13px;
+    margin-top: 13px !important;
 
-    color: #3c3c3c;
+    color: #3e3e3e !important;
 
-    font-size: 7px;
-    letter-spacing: 2.5px;
+    font-size: 7px !important;
+    font-weight: 800 !important;
+    letter-spacing: 3px !important;
 }
 
-/* ALT BÖLÜMLER */
+/* =====================================================
+   BOT + TEAM
+===================================================== */
 
 .split {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     margin: 0 6vw;
 }
 
 .panel {
+    min-width: 0;
+
     padding: 65px 5vw;
 
     position: relative;
@@ -491,9 +662,54 @@ body::after {
     border-left: 1px solid rgba(255,255,255,.05);
 }
 
+.bot-panel {
+    overflow: hidden;
+}
+
 .team-panel {
+    overflow: hidden;
+
     border-right: 1px solid rgba(255,255,255,.05);
 }
+
+/* Köşe ışıkları */
+
+.bot-panel::before,
+.team-panel::before {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(180,140,60,.025),
+            transparent 70%
+        );
+
+    filter: blur(55px);
+
+    pointer-events: none;
+}
+
+.bot-panel::before {
+    left: -320px;
+    bottom: -320px;
+}
+
+.team-panel::before {
+    right: -320px;
+    bottom: -320px;
+}
+
+/* =====================================================
+   PANEL
+===================================================== */
 
 .panel-head {
     display: flex;
@@ -503,25 +719,37 @@ body::after {
     margin-bottom: 27px;
 }
 
-.tag,
-.status,
-.count {
-    color: #484848;
+.tag {
+    color: #474747;
 
     font-size: 7px;
     font-weight: 800;
     letter-spacing: 2.5px;
 }
 
-.status b {
-    display: inline-block;
+.status,
+.count {
+    color: #444;
 
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.status b {
     width: 5px;
     height: 5px;
+
     margin-right: 7px;
 
+    display: inline-block;
+
     border-radius: 50%;
-    background: #ccc;
+
+    background: #c8c8c8;
+
+    box-shadow:
+        0 0 7px rgba(255,255,255,.25);
 }
 
 .panel h2 {
@@ -531,11 +759,13 @@ body::after {
 
     font-size: 34px;
     font-weight: 800;
+
     letter-spacing: -1.5px;
 }
 
 .panel h2 em {
-    color: #505050;
+    color: #4d4d4d;
+
     font-style: normal;
 }
 
@@ -548,7 +778,9 @@ body::after {
     line-height: 1.8;
 }
 
-/* FEATURES */
+/* =====================================================
+   FEATURES
+===================================================== */
 
 .features {
     margin: 30px 0;
@@ -559,11 +791,12 @@ body::after {
 
     display: flex;
     align-items: center;
+
     gap: 18px;
 
     border-top: 1px solid rgba(255,255,255,.045);
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .features article:last-child {
@@ -572,10 +805,18 @@ body::after {
 
 .features article:hover {
     padding-left: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.012),
+            transparent
+        );
 }
 
 .features article > b {
-    color: #3b3b3b;
+    color: #3a3a3a;
+
     font-size: 8px;
 }
 
@@ -585,6 +826,8 @@ body::after {
     color: #999;
 
     font-size: 8px;
+    font-weight: 800;
+
     letter-spacing: 2px;
 }
 
@@ -598,7 +841,9 @@ body::after {
     font-size: 9px;
 }
 
-/* WIDE BUTTON */
+/* =====================================================
+   WIDE BUTTON
+===================================================== */
 
 .wide-btn {
     width: 100%;
@@ -610,27 +855,33 @@ body::after {
     align-items: center;
     justify-content: space-between;
 
-    color: #777;
+    color: #707070;
 
     text-decoration: none;
 
     font-size: 8px;
     font-weight: 800;
+
     letter-spacing: 1.7px;
 
     border: 1px solid #292929;
+
     background: transparent;
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .wide-btn:hover {
     color: #080808;
+
     background: #ddd;
+
     border-color: #ddd;
 }
 
-/* MEMBERS */
+/* =====================================================
+   MEMBERS
+===================================================== */
 
 .members {
     margin-top: 30px;
@@ -640,14 +891,16 @@ body::after {
     min-height: 76px;
 
     display: grid;
+
     grid-template-columns: 52px 1fr 25px;
 
     align-items: center;
+
     gap: 14px;
 
     border-top: 1px solid rgba(255,255,255,.045);
 
-    transition: .25s;
+    transition: .25s ease;
 }
 
 .member:last-child {
@@ -668,17 +921,21 @@ body::after {
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #2c2c2c;
+    border: 1px solid #2b2b2b;
+
     border-radius: 50%;
 
-    background: #0b0b0b;
+    background: #0a0a0a;
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: contain;
+
     border-radius: 50%;
 }
 
@@ -688,6 +945,8 @@ body::after {
     color: #aaa;
 
     font-size: 9px;
+    font-weight: 800;
+
     letter-spacing: 1.5px;
 }
 
@@ -699,19 +958,26 @@ body::after {
     color: #444;
 
     font-size: 7px;
+    font-weight: 700;
+
     letter-spacing: 2px;
 }
 
 .member > b {
-    color: #3c3c3c;
+    color: #3b3b3b;
+
     font-size: 8px;
+
     text-align: right;
 }
 
-/* DISCORD */
+/* =====================================================
+   DISCORD
+===================================================== */
 
 .discord {
     margin: 75px 6vw;
+
     padding: 65px 6vw;
 
     display: flex;
@@ -725,10 +991,40 @@ body::after {
 
     border: 1px solid rgba(255,255,255,.055);
 
-    background: rgba(255,255,255,.008);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.014),
+            rgba(255,255,255,.004)
+        );
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.45);
+        0 30px 80px rgba(0,0,0,.5);
+}
+
+.discord::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 400px;
+
+    right: -300px;
+    bottom: -300px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(185,145,65,.035),
+            transparent 70%
+        );
+
+    filter: blur(55px);
+
+    pointer-events: none;
 }
 
 .discord h2 {
@@ -737,24 +1033,32 @@ body::after {
     color: #ddd;
 
     font-size: clamp(38px,5vw,67px);
+
     line-height: .9;
+
     letter-spacing: -4px;
 }
 
 .discord h2 span {
-    color: #555;
+    color: #505050;
 }
 
 .discord p {
     color: #555;
+
     font-size: 11px;
 }
 
 .primary.big {
     min-width: 185px;
+
+    position: relative;
+    z-index: 2;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
     min-height: 70px;
@@ -765,16 +1069,19 @@ footer {
     align-items: center;
     justify-content: space-between;
 
-    color: #383838;
+    color: #373737;
 
     font-size: 7px;
     font-weight: 800;
+
     letter-spacing: 2px;
 
     border-top: 1px solid rgba(255,255,255,.05);
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 850px) {
 
@@ -792,16 +1099,19 @@ footer {
 
     .hero {
         grid-template-columns: 1fr;
+
         padding: 70px 7vw;
     }
 
-    .hero-mark {
-        width: 100%;
-        margin-top: 65px;
+    .spotify-box {
+        max-width: 100% !important;
+
+        margin-top: 60px !important;
     }
 
     .split {
         grid-template-columns: 1fr;
+
         margin: 0;
     }
 
@@ -811,6 +1121,7 @@ footer {
 
     .discord {
         margin: 55px 5vw;
+
         flex-direction: column;
         align-items: flex-start;
     }
@@ -819,6 +1130,10 @@ footer {
         width: 100%;
     }
 }
+
+/* =====================================================
+   PHONE
+===================================================== */
 
 @media (max-width: 500px) {
 
@@ -850,6 +1165,17 @@ footer {
         padding: 50px 7vw;
     }
 
+    .member {
+        grid-template-columns: 48px 1fr 20px;
+
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+    }
+
     .discord {
         padding: 50px 7vw;
     }
@@ -860,8 +1186,25 @@ footer {
 
     footer {
         padding: 20px 5vw;
+
         flex-direction: column;
         justify-content: center;
+
         gap: 15px;
+    }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
     }
 }
