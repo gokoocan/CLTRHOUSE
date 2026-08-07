@@ -1,5 +1,8 @@
-```css
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ================================================= */
+/* RESET */
+/* ================================================= */
 
 * {
     box-sizing: border-box;
@@ -12,9 +15,12 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    background: #050504;
-    color: #eeeeea;
+
+    background: #050505;
+    color: #eeeeee;
+
     font-family: Inter, Arial, sans-serif;
+
     overflow-x: hidden;
 }
 
@@ -25,9 +31,12 @@ body {
 .noise {
     position: fixed;
     inset: 0;
+
     pointer-events: none;
-    opacity: .025;
-    z-index: 20;
+
+    opacity: .028;
+
+    z-index: 50;
 
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -38,90 +47,105 @@ body {
 
 .nav {
     height: 82px;
+
     padding: 0 6vw;
 
     display: flex;
     align-items: center;
+
     gap: 40px;
 
     position: sticky;
     top: 0;
-    z-index: 10;
 
-    background: rgba(5, 5, 4, .88);
+    z-index: 40;
+
+    background: rgba(5, 5, 5, .88);
+
     backdrop-filter: blur(18px);
 
-    border-bottom: 1px solid rgba(181, 139, 55, .13);
+    border-bottom: 1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 10px 40px rgba(0, 0, 0, .25),
-        0 1px 0 rgba(201, 159, 68, .03);
+        0 15px 50px rgba(0,0,0,.3);
 }
 
 .brand {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
-    color: #f1eee6;
+    color: #f3f3f3;
+
     text-decoration: none;
 
     font-size: 22px;
     font-weight: 900;
+
     letter-spacing: -1px;
 }
 
 .brand small {
     margin-top: 13px;
 
-    color: #746b58;
+    color: #686868;
+
     font-size: 8px;
+
     letter-spacing: 3px;
 }
 
 .nav nav {
     display: flex;
+
     gap: 28px;
+
     margin-left: auto;
 }
 
 .nav nav a,
 .nav-btn {
-    color: #817d73;
+    color: #777;
+
     text-decoration: none;
 
     font-size: 10px;
     font-weight: 800;
+
     letter-spacing: 2px;
 
     transition: .25s ease;
 }
 
 .nav nav a:hover {
-    color: #d4ad5a;
-    text-shadow: 0 0 16px rgba(212, 173, 90, .3);
+    color: #f1f1f1;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.15);
 }
 
 .nav-btn {
     padding: 12px 17px;
 
-    border: 1px solid #514329;
-    color: #c9b27e;
+    color: #cfcfcf;
 
-    background: rgba(185, 143, 58, .04);
+    border: 1px solid #373737;
 
-    box-shadow:
-        inset 0 0 20px rgba(190, 145, 55, .025),
-        0 0 20px rgba(180, 135, 45, .02);
+    background: rgba(255,255,255,.015);
+
+    transition: .25s ease;
 }
 
 .nav-btn:hover {
-    color: #080705;
-    background: #c9a653;
-    border-color: #c9a653;
+    color: #080808;
+
+    background: #e8e8e8;
+
+    border-color: #e8e8e8;
 
     box-shadow:
-        0 0 25px rgba(201, 166, 83, .25);
+        0 0 25px rgba(255,255,255,.12);
 }
 
 /* ================================================= */
@@ -130,43 +154,69 @@ body {
 
 .hero {
     min-height: 610px;
+
     padding: 70px 8vw;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     align-items: center;
 
-    border-bottom: 1px solid rgba(181, 139, 55, .12);
+    position: relative;
+
+    overflow: hidden;
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
 
     background:
         radial-gradient(
-            circle at 78% 42%,
-            rgba(174, 128, 43, .105) 0,
-            rgba(65, 51, 27, .07) 18%,
-            rgba(13, 13, 11, .8) 40%,
-            #050504 70%
+            circle at 78% 43%,
+            rgba(190,145,55,.045) 0,
+            rgba(80,70,50,.025) 18%,
+            rgba(15,15,15,.75) 42%,
+            #050505 72%
         );
-
-    position: relative;
-    overflow: hidden;
 }
 
-/* Altın LED ışığı */
+/* Çok hafif altın LED ışığı */
 
-.hero::after {
+.hero::before {
     content: "";
+
     position: absolute;
 
-    width: 480px;
-    height: 480px;
+    width: 550px;
+    height: 550px;
 
-    right: -180px;
-    top: 80px;
+    right: -230px;
+    top: 70px;
 
     border-radius: 50%;
 
-    background: rgba(197, 153, 61, .035);
+    background: rgba(190,145,55,.035);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+/* Hafif beyaz ışık */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    left: -250px;
+    bottom: -250px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.018);
 
     filter: blur(90px);
 
@@ -175,16 +225,24 @@ body {
 
 .hero-copy {
     max-width: 620px;
+
     position: relative;
+
     z-index: 2;
 }
 
+/* ================================================= */
+/* EYEBROW */
+/* ================================================= */
+
 .eyebrow,
 .tag {
-    color: #87754e;
+    color: #777;
 
     font-size: 9px;
+
     font-weight: 800;
+
     letter-spacing: 3px;
 }
 
@@ -198,29 +256,38 @@ body {
 
     border-radius: 50%;
 
-    background: #c7a04e;
+    background: #d7d7d7;
 
     box-shadow:
-        0 0 7px rgba(199, 160, 78, .8),
-        0 0 18px rgba(199, 160, 78, .3);
+        0 0 7px rgba(255,255,255,.7),
+        0 0 17px rgba(255,255,255,.18);
 }
+
+/* ================================================= */
+/* CLTR KROM YAZI */
+/* ================================================= */
 
 .hero h1 {
     margin: 30px 0 34px;
 
     font-size: clamp(90px, 14vw, 190px);
+
     line-height: .75;
 
     letter-spacing: -.09em;
 
     background:
         linear-gradient(
-            110deg,
-            #f4f0e5,
-            #b7b1a2 38%,
-            #c9a653 53%,
-            #eee8d9 72%,
-            #6c624d
+            180deg,
+
+            #ffffff 0%,
+            #eeeeee 12%,
+            #8c8c8c 31%,
+            #f7f7f7 45%,
+            #a1a1a1 62%,
+            #5c5c5c 78%,
+            #ededed 91%,
+            #ffffff 100%
         );
 
     -webkit-background-clip: text;
@@ -229,15 +296,21 @@ body {
     color: transparent;
 
     filter:
-        drop-shadow(0 0 25px rgba(201, 166, 83, .08));
+        drop-shadow(0 2px 2px rgba(0,0,0,.45))
+        drop-shadow(0 0 18px rgba(255,255,255,.035));
 }
+
+/* ================================================= */
+/* HERO TEXT */
+/* ================================================= */
 
 .hero p {
     max-width: 490px;
 
-    color: #89857b;
+    color: #858585;
 
     font-size: 13px;
+
     line-height: 1.8;
 }
 
@@ -247,7 +320,9 @@ body {
 
 .actions {
     display: flex;
+
     gap: 12px;
+
     margin-top: 30px;
 }
 
@@ -266,59 +341,71 @@ body {
     text-decoration: none;
 
     font-size: 10px;
+
     font-weight: 800;
+
     letter-spacing: 1.8px;
 
     transition: .25s ease;
 }
 
+/* Ana buton */
+
 .primary {
-    color: #090806;
-    background: #c9a653;
+    color: #090909;
+
+    background: #e3e3e3;
+
+    border: 1px solid #e3e3e3;
 
     box-shadow:
-        0 0 0 rgba(201, 166, 83, 0),
-        0 10px 30px rgba(201, 166, 83, .06);
+        0 8px 30px rgba(255,255,255,.035);
 }
 
 .primary:hover {
-    background: #e0bf69;
+    color: #080808;
+
+    background: #ffffff;
+
+    border-color: #ffffff;
 
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 35px rgba(201, 166, 83, .18),
-        0 0 30px rgba(201, 166, 83, .08);
+        0 10px 35px rgba(255,255,255,.13);
 }
 
-.secondary {
-    color: #a69f91;
-    border: 1px solid #3b3425;
+/* İkinci buton */
 
-    background: rgba(180, 140, 55, .025);
+.secondary {
+    color: #999;
+
+    border: 1px solid #303030;
+
+    background: rgba(255,255,255,.012);
 }
 
 .secondary:hover {
-    color: #d6b968;
-    border-color: #766039;
+    color: #eee;
 
-    background: rgba(180, 140, 55, .045);
+    border-color: #777;
 
-    box-shadow:
-        0 0 25px rgba(180, 140, 55, .05);
+    background: rgba(255,255,255,.025);
 }
 
 /* ================================================= */
-/* MUSIC / SPOTIFY */
+/* HERO MARK / SPOTIFY CONTAINER */
 /* ================================================= */
 
 .hero-mark {
     min-height: 420px;
 
     display: flex;
+
     flex-direction: column;
 
     justify-content: center;
+
     align-items: stretch;
 
     position: relative;
@@ -326,33 +413,44 @@ body {
     z-index: 2;
 }
 
+/* Eski halkalar */
+
 .hero-mark .ring,
 .hero-mark .chrome,
 .hero-mark .mark-line {
     display: none !important;
 }
 
-.spotify-area {
+/* ================================================= */
+/* SPOTIFY */
+/* ================================================= */
+
+.spotify-area,
+.spotify-box {
     width: 100%;
+}
+
+.spotify-area {
     max-width: 520px;
 
     margin-left: auto;
-
-    position: relative;
 }
 
 .spotify-title {
     display: flex;
+
     align-items: center;
 
     gap: 9px;
 
     margin-bottom: 15px;
 
-    color: #74684d;
+    color: #777;
 
     font-size: 9px;
+
     font-weight: 800;
+
     letter-spacing: 3px;
 }
 
@@ -364,171 +462,90 @@ body {
 
     border-radius: 50%;
 
-    background: #c5a052;
+    background: #d7d7d7;
 
     box-shadow:
-        0 0 7px rgba(197, 160, 82, .8),
-        0 0 18px rgba(197, 160, 82, .28);
+        0 0 7px rgba(255,255,255,.7),
+        0 0 17px rgba(255,255,255,.18);
 }
 
-.spotify-box {
+/* ================================================= */
+/* SPOTIFY CARD */
+/* ================================================= */
+
+.spotify-card {
     width: 100%;
+
+    padding: 14px;
 
     overflow: hidden;
 
-    border: 1px solid rgba(187, 145, 57, .16);
+    border: 1px solid rgba(190,145,55,.14);
 
     background:
         linear-gradient(
             145deg,
-            rgba(25, 23, 18, .96),
-            rgba(8, 8, 7, .98)
+            rgba(24,24,24,.97),
+            rgba(8,8,8,.98)
         );
 
     box-shadow:
-        0 30px 70px rgba(0, 0, 0, .6),
-        0 0 50px rgba(177, 132, 45, .035),
-        inset 0 1px 0 rgba(218, 181, 93, .04);
+        0 30px 70px rgba(0,0,0,.6),
+        0 0 55px rgba(190,145,55,.025),
+        inset 0 1px 0 rgba(255,255,255,.025);
 }
 
-.spotify-box iframe {
+/* Spotify şarkı */
+
+.spotify-track {
+    margin-bottom: 12px;
+
+    position: relative;
+}
+
+.spotify-track:last-child {
+    margin-bottom: 0;
+}
+
+.spotify-track iframe {
     display: block;
 
     width: 100%;
+
     height: 152px;
 
     border: 0;
+
+    border-radius: 12px;
+
+    background: #111;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.22);
 }
 
 /* ================================================= */
-/* SPOTIFY LİSTESİ */
+/* SPOTIFY FOOTER */
 /* ================================================= */
 
-.spotify-list {
-    width: 100%;
-
-    margin-top: 14px;
-
-    border: 1px solid rgba(181, 139, 55, .11);
-    border-bottom: 0;
-
-    background: rgba(12, 12, 10, .5);
-}
-
-.spotify-list-label {
-    padding: 12px 13px;
-
-    color: #665a43;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 3px;
-
-    border-bottom: 1px solid rgba(181, 139, 55, .09);
-}
-
-.spotify-song {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-
-    gap: 13px;
-
-    padding: 13px;
-
-    color: #716e66;
-
-    text-decoration: none;
-
-    border-bottom: 1px solid rgba(181, 139, 55, .08);
-
-    transition:
-        background .25s,
-        color .25s,
-        padding .25s;
-}
-
-.spotify-song:hover {
-    color: #e6d8b6;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(182, 139, 48, .055),
-            transparent
-        );
-
-    padding-left: 17px;
-}
-
-.spotify-song-number {
-    width: 18px;
-
-    color: #635638;
-
-    font-size: 8px;
-    font-weight: 800;
-}
-
-.spotify-song-info {
-    min-width: 0;
-}
-
-.spotify-song-name {
-    overflow: hidden;
-
-    color: inherit;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.spotify-song-artist {
-    margin-top: 4px;
-
-    color: #504a3e;
-
-    font-size: 7px;
-
-    letter-spacing: 1px;
-}
-
-.spotify-song-arrow {
-    margin-left: auto;
-
-    color: #65583c;
-
-    font-size: 11px;
-
-    transition: .2s;
-}
-
-.spotify-song:hover .spotify-song-arrow {
-    color: #c9a653;
-    transform: translateX(3px);
-}
-
-.spotify-bottom {
+.spotify-footer {
     display: flex;
 
     justify-content: space-between;
 
     margin-top: 13px;
 
-    color: #514936;
+    color: #4e4e4e;
 
     font-size: 7px;
+
+    font-weight: 800;
 
     letter-spacing: 3px;
 }
 
 /* ================================================= */
-/* PANELLER */
+/* PANELS */
 /* ================================================= */
 
 .split {
@@ -544,23 +561,23 @@ body {
 .panel {
     padding: 55px 5vw;
 
-    border-left: 1px solid rgba(181, 139, 55, .09);
+    border-left: 1px solid rgba(255,255,255,.065);
 
     background:
         radial-gradient(
             circle at 10% 20%,
-            rgba(181, 139, 55, .025),
+            rgba(190,145,55,.018),
             transparent 35%
         );
 }
 
 .team-panel {
-    border-right: 1px solid rgba(181, 139, 55, .09);
+    border-right: 1px solid rgba(255,255,255,.065);
 
     background:
         radial-gradient(
             circle at 90% 30%,
-            rgba(181, 139, 55, .025),
+            rgba(190,145,55,.018),
             transparent 40%
         );
 }
@@ -569,15 +586,17 @@ body {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 32px;
 }
 
 .status {
-    color: #6d6658;
+    color: #666;
 
     font-size: 8px;
+
     letter-spacing: 2px;
 }
 
@@ -591,16 +610,17 @@ body {
 
     border-radius: 50%;
 
-    background: #b99a52;
+    background: #d3d3d3;
 
     box-shadow:
-        0 0 8px rgba(185, 154, 82, .6);
+        0 0 8px rgba(255,255,255,.45);
 }
 
 .count {
-    color: #514a3c;
+    color: #444;
 
     font-size: 8px;
+
     letter-spacing: 2px;
 }
 
@@ -613,20 +633,21 @@ body {
 }
 
 .panel h2 em {
-    color: #806f4d;
+    color: #707070;
 
     font-style: normal;
 }
 
 .muted {
-    color: #6d6a62;
+    color: #686868;
 
     font-size: 12px;
+
     line-height: 1.7;
 }
 
 /* ================================================= */
-/* BOT */
+/* BOT FEATURES */
 /* ================================================= */
 
 .features {
@@ -640,13 +661,13 @@ body {
 
     padding: 17px 0;
 
-    border-top: 1px solid rgba(181, 139, 55, .09);
+    border-top: 1px solid rgba(255,255,255,.065);
 
     transition: .25s ease;
 }
 
 .features article:last-child {
-    border-bottom: 1px solid rgba(181, 139, 55, .09);
+    border-bottom: 1px solid rgba(255,255,255,.065);
 }
 
 .features article:hover {
@@ -655,13 +676,13 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(181, 139, 55, .035),
+            rgba(190,145,55,.025),
             transparent
         );
 }
 
 .features article > b {
-    color: #655738;
+    color: #4d4d4d;
 
     font-size: 9px;
 }
@@ -680,34 +701,38 @@ body {
 .features span {
     margin-top: 6px;
 
-    color: #656159;
+    color: #5e5e5e;
 
     font-size: 10px;
 }
 
+/* ================================================= */
+/* WIDE BUTTON */
+/* ================================================= */
+
 .wide-btn {
     width: 100%;
 
-    color: #b8a06a;
+    color: #aaa;
 
-    background: rgba(181, 139, 55, .035);
+    background: rgba(255,255,255,.015);
 
-    border: 1px solid rgba(181, 139, 55, .16);
+    border: 1px solid #292929;
 }
 
 .wide-btn:hover {
-    color: #090806;
+    color: #080808;
 
-    background: #c9a653;
+    background: #dedede;
 
-    border-color: #c9a653;
+    border-color: #dedede;
 
     box-shadow:
-        0 0 30px rgba(201, 166, 83, .12);
+        0 0 30px rgba(255,255,255,.07);
 }
 
 /* ================================================= */
-/* ÜYELER */
+/* TEAM MEMBERS */
 /* ================================================= */
 
 .members {
@@ -729,20 +754,22 @@ body {
 
     padding: 14px 0;
 
-    border-top: 1px solid rgba(181, 139, 55, .09);
+    border-top: 1px solid rgba(255,255,255,.065);
 
     transition: .25s ease;
 }
 
 .member:last-child {
-    border-bottom: 1px solid rgba(181, 139, 55, .09);
+    border-bottom: 1px solid rgba(255,255,255,.065);
 }
 
 .member:hover {
     transform: translateX(5px);
 }
 
-/* Avatar */
+/* ================================================= */
+/* AVATAR */
+/* ================================================= */
 
 .avatar {
     width: 56px;
@@ -760,27 +787,26 @@ body {
 
     overflow: hidden;
 
-    border: 1px solid rgba(184, 144, 59, .25);
+    border: 1px solid #333;
 
     border-radius: 50%;
 
-    background: #11110f;
+    background: #101010;
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.02),
-        0 5px 20px rgba(0,0,0,.35),
-        0 0 22px rgba(181, 139, 55, .035);
+        inset 0 0 0 1px rgba(255,255,255,.025),
+        0 5px 20px rgba(0,0,0,.35);
 
     transition: .25s ease;
 }
 
 .member:hover .avatar {
-    border-color: rgba(201, 166, 83, .6);
+    border-color: #777;
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.02),
-        0 5px 20px rgba(0,0,0,.35),
-        0 0 25px rgba(201, 166, 83, .12);
+        inset 0 0 0 1px rgba(255,255,255,.025),
+        0 5px 20px rgba(0,0,0,.4),
+        0 0 20px rgba(255,255,255,.06);
 }
 
 .avatar img {
@@ -799,7 +825,9 @@ body {
     border-radius: 50%;
 }
 
-/* Üye bilgileri */
+/* ================================================= */
+/* MEMBER INFO */
+/* ================================================= */
 
 .member > div:nth-child(2) {
     min-width: 0;
@@ -825,7 +853,7 @@ body {
 .member span {
     margin-top: 5px;
 
-    color: #625943;
+    color: #505050;
 
     font-size: 8px;
 
@@ -833,7 +861,7 @@ body {
 }
 
 .member > b {
-    color: #5c5038;
+    color: #444;
 
     font-size: 9px;
 
@@ -848,6 +876,7 @@ body {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     gap: 30px;
@@ -856,26 +885,27 @@ body {
 
     padding: 55px 6vw;
 
-    border: 1px solid rgba(181, 139, 55, .15);
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.09);
 
     background:
         radial-gradient(
             circle at 85% 50%,
-            rgba(181, 139, 55, .08),
+            rgba(190,145,55,.045),
             transparent 30%
         ),
         linear-gradient(
             120deg,
-            #11110f,
-            #080807
+            #111111,
+            #080808
         );
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, .3),
-        inset 0 1px 0 rgba(218, 181, 93, .035);
-
-    position: relative;
-    overflow: hidden;
+        0 25px 70px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.025);
 }
 
 .discord::after {
@@ -883,19 +913,26 @@ body {
 
     position: absolute;
 
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
 
-    right: -130px;
-    top: -100px;
+    right: -150px;
+    top: -120px;
 
     border-radius: 50%;
 
-    background: rgba(201, 166, 83, .045);
+    background: rgba(190,145,55,.035);
 
-    filter: blur(60px);
+    filter: blur(70px);
 
     pointer-events: none;
+}
+
+.discord > div,
+.discord > a {
+    position: relative;
+
+    z-index: 2;
 }
 
 .discord h2 {
@@ -904,29 +941,20 @@ body {
     font-size: clamp(34px, 5vw, 65px);
 
     letter-spacing: -3px;
-
-    position: relative;
-    z-index: 2;
 }
 
 .discord h2 span {
-    color: #796a4b;
+    color: #656565;
 }
 
 .discord p {
-    color: #69665e;
+    color: #646464;
 
     font-size: 12px;
-
-    position: relative;
-    z-index: 2;
 }
 
 .big {
     min-width: 190px;
-
-    position: relative;
-    z-index: 2;
 }
 
 /* ================================================= */
@@ -940,13 +968,13 @@ footer {
 
     padding: 24px 6vw;
 
-    color: #4c4639;
+    color: #3e3e3e;
 
     font-size: 8px;
 
     letter-spacing: 2px;
 
-    border-top: 1px solid rgba(181, 139, 55, .08);
+    border-top: 1px solid rgba(255,255,255,.06);
 }
 
 /* ================================================= */
@@ -981,6 +1009,7 @@ footer {
 
     .spotify-area {
         max-width: 100%;
+
         margin-left: 0;
     }
 
@@ -991,7 +1020,7 @@ footer {
     }
 
     .panel {
-        border-right: 1px solid rgba(181, 139, 55, .09);
+        border-right: 1px solid rgba(255,255,255,.065);
     }
 
     .discord {
@@ -1047,16 +1076,15 @@ footer {
         min-height: 50px;
     }
 
-    .spotify-box iframe {
+    .spotify-track iframe {
         height: 152px;
     }
 
-    .spotify-song {
-        padding: 12px 10px;
+    .spotify-card {
+        padding: 10px;
     }
 
     footer {
         padding: 20px 5vw;
     }
 }
-```
