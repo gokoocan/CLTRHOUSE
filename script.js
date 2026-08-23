@@ -142,7 +142,7 @@ function playTrack() {
         .then(() => {
 
             playBtn.textContent =
-                "Ⅱ";
+                "⏸";
 
         })
         .catch(error => {
