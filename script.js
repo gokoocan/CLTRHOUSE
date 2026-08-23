@@ -30,7 +30,6 @@ const tracks = [
 ];
 
 
-
 /* =====================================================
    ELEMENTLER
 ===================================================== */
@@ -71,6 +70,8 @@ const songArtist =
 const trackButtons =
     document.querySelectorAll(".track");
 
+const disc =
+    document.querySelector(".disc");
 
 
 /* =====================================================
@@ -78,7 +79,6 @@ const trackButtons =
 ===================================================== */
 
 let currentTrack = 0;
-
 
 
 /* =====================================================
@@ -92,30 +92,26 @@ function loadTrack(index) {
     const track =
         tracks[currentTrack];
 
-
     audio.src =
         track.src;
-
 
     songTitle.textContent =
         track.title;
 
-
     songArtist.textContent =
         track.artist;
-
 
     currentTime.textContent =
         "0:00";
 
-
     duration.textContent =
         "0:00";
-
 
     progress.value =
         0;
 
+
+    /* TRACK LIST VARSA AKTİF OLANI GÖSTER */
 
     trackButtons.forEach(
         (button, buttonIndex) => {
@@ -131,7 +127,6 @@ function loadTrack(index) {
 }
 
 
-
 /* =====================================================
    PLAY
 ===================================================== */
@@ -143,6 +138,14 @@ function playTrack() {
 
             playBtn.textContent =
                 "⏸";
+
+            if (disc) {
+
+                disc.classList.add(
+                    "playing"
+                );
+
+            }
 
         })
         .catch(error => {
@@ -157,7 +160,6 @@ function playTrack() {
 }
 
 
-
 /* =====================================================
    PAUSE
 ===================================================== */
@@ -169,8 +171,15 @@ function pauseTrack() {
     playBtn.textContent =
         "▶";
 
-}
+    if (disc) {
 
+        disc.classList.remove(
+            "playing"
+        );
+
+    }
+
+}
 
 
 /* =====================================================
@@ -192,9 +201,8 @@ function togglePlay() {
 }
 
 
-
 /* =====================================================
-   SONRAKİ
+   SONRAKİ ŞARKI
 ===================================================== */
 
 function nextTrack() {
@@ -215,15 +223,13 @@ function nextTrack() {
         currentTrack
     );
 
-
     playTrack();
 
 }
 
 
-
 /* =====================================================
-   ÖNCEKİ
+   ÖNCEKİ ŞARKI
 ===================================================== */
 
 function previousTrack() {
@@ -244,11 +250,9 @@ function previousTrack() {
         currentTrack
     );
 
-
     playTrack();
 
 }
-
 
 
 /* =====================================================
@@ -277,13 +281,15 @@ function formatTime(seconds) {
             seconds % 60
         )
         .toString()
-        .padStart(2, "0");
+        .padStart(
+            2,
+            "0"
+        );
 
 
     return `${minutes}:${secs}`;
 
 }
-
 
 
 /* =====================================================
@@ -296,7 +302,6 @@ playBtn.addEventListener(
 );
 
 
-
 /* =====================================================
    NEXT BUTTON
 ===================================================== */
@@ -307,7 +312,6 @@ nextBtn.addEventListener(
 );
 
 
-
 /* =====================================================
    PREVIOUS BUTTON
 ===================================================== */
@@ -316,7 +320,6 @@ prevBtn.addEventListener(
     "click",
     previousTrack
 );
-
 
 
 /* =====================================================
@@ -334,7 +337,6 @@ audio.addEventListener(
 
     }
 );
-
 
 
 /* =====================================================
@@ -374,7 +376,6 @@ audio.addEventListener(
 );
 
 
-
 /* =====================================================
    PROGRESS DEĞİŞTİR
 ===================================================== */
@@ -400,7 +401,6 @@ progress.addEventListener(
 
     }
 );
-
 
 
 /* =====================================================
@@ -430,7 +430,6 @@ volume.addEventListener(
 );
 
 
-
 /* =====================================================
    TRACK LIST
 ===================================================== */
@@ -448,7 +447,9 @@ trackButtons.forEach(
                     );
 
 
-                loadTrack(index);
+                loadTrack(
+                    index
+                );
 
                 playTrack();
 
@@ -457,7 +458,6 @@ trackButtons.forEach(
 
     }
 );
-
 
 
 /* =====================================================
@@ -474,9 +474,8 @@ audio.addEventListener(
 );
 
 
-
 /* =====================================================
-   PLAY / PAUSE DURUMU
+   GERÇEK PLAY DURUMU
 ===================================================== */
 
 audio.addEventListener(
@@ -484,11 +483,24 @@ audio.addEventListener(
     () => {
 
         playBtn.textContent =
-            "Ⅱ";
+            "⏸";
+
+
+        if (disc) {
+
+            disc.classList.add(
+                "playing"
+            );
+
+        }
 
     }
 );
 
+
+/* =====================================================
+   GERÇEK PAUSE DURUMU
+===================================================== */
 
 audio.addEventListener(
     "pause",
@@ -497,9 +509,34 @@ audio.addEventListener(
         playBtn.textContent =
             "▶";
 
+
+        if (disc) {
+
+            disc.classList.remove(
+                "playing"
+            );
+
+        }
+
     }
 );
 
+
+/* =====================================================
+   HATA
+===================================================== */
+
+audio.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "Ses dosyası yüklenemedi:",
+            audio.src
+        );
+
+    }
+);
 
 
 /* =====================================================
