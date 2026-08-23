@@ -241,7 +241,6 @@ nav a:hover {
     padding: 14px 17px;
 
     font-size: 7px;
-
     font-weight: 700;
 
     letter-spacing: 1.5px;
@@ -279,7 +278,7 @@ nav a:hover {
 
 
 /* =====================================================
-   HERO PLAYER
+   PREMIUM HERO PLAYER
 ===================================================== */
 
 .hero-player {
@@ -289,9 +288,48 @@ nav a:hover {
 
     padding: 30px;
 
+    position: relative;
+
     border: 1px solid #292929;
 
-    background: #0c0c0c;
+    background:
+        linear-gradient(
+            145deg,
+            #111 0%,
+            #0b0b0b 45%,
+            #080808 100%
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.025);
+
+    overflow: hidden;
+}
+
+
+/* ÜST PARLAK ÇİZGİ */
+
+.hero-player::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+
+    width: 76%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #555,
+            transparent
+        );
+
+    opacity: .35;
 }
 
 
@@ -312,7 +350,6 @@ nav a:hover {
     color: #555;
 
     font-size: 7px;
-
     font-weight: 700;
 
     letter-spacing: 3px;
@@ -324,7 +361,6 @@ nav a:hover {
     color: #eee;
 
     font-size: 24px;
-
     font-weight: 900;
 
     letter-spacing: -1.5px;
@@ -340,14 +376,15 @@ nav a:hover {
     color: #444;
 
     font-size: 7px;
-
     font-weight: 700;
 
     letter-spacing: 2px;
 }
 
 
-/* NOW PLAYING */
+/* =====================================================
+   NOW PLAYING
+===================================================== */
 
 .now-playing {
     display: flex;
@@ -356,56 +393,165 @@ nav a:hover {
 
     gap: 20px;
 
-    padding: 26px 0;
+    padding: 28px 0;
 }
 
 
-/* DISC */
+/* =====================================================
+   VINYL PLAK
+===================================================== */
 
 .disc {
-    width: 70px;
-    height: 70px;
+    width: 82px;
+    height: 82px;
 
     flex-shrink: 0;
+
+    position: relative;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #444;
+    border: 1px solid #3b3b3b;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #050505 0px,
+            #101010 1px,
+            #050505 2px,
+            #181818 3px
+        );
+
+    color: #777;
+
+    font-size: 6px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 0 25px rgba(255,255,255,.04),
+        inset 0 0 0 7px #080808,
+        inset 0 0 0 8px #292929;
+
+    overflow: hidden;
+
+    transition:
+        box-shadow .35s ease,
+        transform .35s ease;
+}
+
+
+/* PLAK HALKALARI */
+
+.disc::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,.015),
+        0 0 0 16px rgba(255,255,255,.012),
+        0 0 0 24px rgba(255,255,255,.008);
+}
+
+
+/* PLAK MERKEZİ */
+
+.disc::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            #444 0 4px,
-            #111 5px 10px,
-            #333 11px 13px,
-            #090909 14px 22px,
-            #222 23px 25px,
-            #090909 26px
+            #ddd 0 2px,
+            #555 3px,
+            #161616 4px,
+            #333 8px,
+            #0b0b0b 9px
         );
 
-    color: #777;
-
-    font-size: 7px;
-
-    font-weight: 800;
+    border: 1px solid #555;
 
     box-shadow:
-        inset 0 0 0 5px #0c0c0c,
-        inset 0 0 0 6px #292929;
+        0 0 12px rgba(255,255,255,.08);
 }
 
 
-/* SONG INFO */
+/* CLTR LOGOSU */
+
+.disc span {
+    position: relative;
+
+    z-index: 2;
+
+    color: #777;
+
+    font-size: 5px;
+
+    letter-spacing: 1px;
+}
+
+
+/* PLAK DÖNÜŞÜ */
+
+@keyframes vinylSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* MÜZİK ÇALIYORSA */
+
+.disc.playing {
+    animation:
+        vinylSpin 3s linear infinite;
+
+    box-shadow:
+        0 0 0 1px #444,
+        0 0 30px rgba(255,255,255,.08),
+        inset 0 0 0 7px #080808,
+        inset 0 0 0 8px #333;
+}
+
+
+/* =====================================================
+   SONG INFO
+===================================================== */
 
 .song-info {
     display: flex;
 
     flex-direction: column;
+
+    min-width: 0;
 }
 
 .song-info small {
@@ -426,6 +572,12 @@ nav a:hover {
     font-size: 12px;
 
     letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
 .song-info span {
@@ -445,9 +597,10 @@ nav a:hover {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    gap: 10px;
+    gap: 12px;
 
     margin-bottom: 25px;
 }
@@ -463,38 +616,71 @@ nav a:hover {
 
     border: 1px solid #333;
 
-    background: #111;
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0b0b0b
+        );
 
-    color: #888;
+    color: #777;
 
     cursor: pointer;
 
-    font-size: 21px;
+    font-size: 22px;
 
-    transition: .2s ease;
+    transition:
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        background .2s ease;
 }
 
 .controls button:hover {
     color: #fff;
 
     border-color: #777;
+
+    background: #181818;
+
+    transform: translateY(-2px);
 }
 
+
+/* PLAY */
+
 .controls .play-button {
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
 
-    border-color: #eee;
+    border: 1px solid #eee;
 
-    background: #eee;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #d8d8d8
+        );
 
     color: #080808;
 
-    font-size: 12px;
+    font-size: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(255,255,255,.08);
 }
 
 .controls .play-button:hover {
     background: #fff;
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 12px 30px rgba(255,255,255,.12);
 }
 
 
@@ -530,6 +716,9 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50%;
 
     background: #ddd;
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,.04);
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -763,7 +952,9 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-/* WIDE BUTTON */
+/* =====================================================
+   WIDE BUTTON
+===================================================== */
 
 .wide-button {
     width: 100%;
@@ -979,6 +1170,7 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 40px;
